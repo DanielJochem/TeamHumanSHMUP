@@ -46,7 +46,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MovingBackground.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\CubeController.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Enemy2.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\EnemyLazor.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Lazor.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PickUpRotate.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Player2Controller.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerHitBox.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerMissile.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerTilt.cs" />
+     <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\WaveStart.cs" />
+     <Compile Include="Assets\Scripts\MovingBackground.cs" />
+     <Compile Include="Assets\Scripts\TestBackgroundScroll.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
