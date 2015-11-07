@@ -16,8 +16,11 @@
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
-[Ll]ibrary/
 /Library/metadata/
+/Library/FailedAssetImports.txt
+/Library/cache/
+/Library/previews/
+/Library/ScriptAssemblies
 sysinfo.txt
 *.stackdump
  
