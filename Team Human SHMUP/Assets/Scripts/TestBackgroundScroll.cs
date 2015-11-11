@@ -6,10 +6,6 @@ public class TestBackgroundScroll : MonoBehaviour {
     public float scrollSpeed = 5.0f;
     private Vector2 scroll;
 
-    void Awake() {
-        scroll.x = 0;
-    }
-
     void FixedUpdate()  {
         //Increase the speed of the screen scrolling.
         if ((Mathf.Abs(GetComponent<Renderer>().material.mainTextureOffset.y) % 1.0f) >= 0.004f) {
