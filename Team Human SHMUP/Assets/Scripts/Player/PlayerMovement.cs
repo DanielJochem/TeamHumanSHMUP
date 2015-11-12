@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     CharacterController playerOne;
     CharacterController playerTwo;
 
-    public float speed = 10.0f;
+    public float speed = 8.0f;
 
     void Start() {
         playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
