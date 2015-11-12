@@ -7,32 +7,27 @@ public class PlayerMovement : MonoBehaviour {
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
 
     //The CharacterController on both players
-    CharacterController playerOne;
-    CharacterController playerTwo;
+    public CharacterController playerOne;
+    public CharacterController playerTwo;
 
     public float speed = 8.0f;
 
-    void Start() {
+   void Start() {
         playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
         playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
     }
 
     void Update() {
-        if (this.gameObject.tag == "Player 1") {
-            if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
-                playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical"));
-                playerOnePosition = transform.TransformDirection(playerOnePosition);
-                playerOnePosition *= speed;
-            }
-
+        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
+            playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical"));
+            playerOnePosition = transform.TransformDirection(playerOnePosition);
+            playerOnePosition *= speed;
         }
-
-        if (this.gameObject.tag == "Player 2") {
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)) {
-                playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical"));
-                playerTwoPosition = transform.TransformDirection(playerTwoPosition);
-                playerTwoPosition *= speed;
-            }
+            
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)) {
+            playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical"));
+            playerTwoPosition = transform.TransformDirection(playerTwoPosition);
+            playerTwoPosition *= speed;
         }
 
         playerOne.Move(playerOnePosition * Time.deltaTime);
