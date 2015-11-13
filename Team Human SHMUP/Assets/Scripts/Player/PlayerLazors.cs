@@ -3,85 +3,44 @@ using System.Collections;
 
 public class PlayerLazors : MonoBehaviour {
 
-    public GameManager gameManager;
+    gameManager GameManager;
 
-    private Transform myTransform;
-
-    private float projectileSpeed = 150.0f;
-    private float rotationSpeed = 10.0f;
-
-    private GameObject closestEnemyUnit;
+    private float projectileSpeed = 500.0f;
 
     private float lifeTime;
-    private float lifeTimeDuration = 2.0f;
+    private float lifeTimeDuration = 0.8f;
 
-    private float damage = 50.0f;
+    private float damage = 20.0f;
 
     // Use this for initialization
-    void Start()
-    {
-        myTransform = this.transform;
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
+    void Start() {
+        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
         lifeTime = Time.time + lifeTimeDuration;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        //Projectile Movement
-        myTransform.position += Time.deltaTime * projectileSpeed * transform.forward;
-
-        closestEnemyUnit = FindClosestEnemyUnit();
-
-        if (closestEnemyUnit != null)
-        {
-            //Smooth Lock
-            //Determine the target rotation. This is the rotation if the transform looks at the target point
-            Quaternion targetRotation = Quaternion.LookRotation(closestEnemyUnit.transform.position - myTransform.position);
-
-            //Smoothly rotate towards the target point.
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
+    void Update() {
+        //Movement
+        transform.position += Time.deltaTime * projectileSpeed * transform.forward;
 
         //Kill projectile after time
-        if (Time.time > lifeTime)
-        {
+        if (Time.time > lifeTime) {
             Destroy(this.gameObject);
         }
     }
 
-    //Algorithm controlling the detection of closest enemy target using global enemy list
-    //Return the closest enemy in enemyList
-    private GameObject FindClosestEnemyUnit()
-    {
-        float distance = Mathf.Infinity;
-        Vector3 position = myTransform.position;
+    void OnTriggerEnter(Collider collider) {
+        if (collider.tag == "Enemy") {
+            collider.GetComponent<Enemies>().takeDamage(damage);
+            Destroy(this.gameObject);
 
-        foreach (GameObject enemyUnit in gameManager.enemyUnitList)
-        {
-            Vector3 diff = enemyUnit.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-
-            if (curDistance < distance)
-            {
-
-                closestEnemyUnit = enemyUnit;
-                distance = curDistance;
+            if (collider.GetComponent<Enemies>().health <= 0) {
+                if (this.gameObject.tag == "P1Fired") {
+                    GameManager.enemiesKilledP1++;
+                } else if (this.gameObject.tag == "P2Fired") {
+                    GameManager.enemiesKilledP2++;
+                }
             }
-        }
-        return closestEnemyUnit;
-    }
-
-    void OnTriggerEnter(Collider otherObject)
-    {
-        if (otherObject.tag == "Enemy")
-        {
-
-            //otherObject.SendMessage ("takeDamage", damage, SendMessageOptions.DontRequireReceiver);
-            otherObject.GetComponent<Enemies>().takeDamage(damage);
-            Destroy(this.gameObject);
         }
     }
 }

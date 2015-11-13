@@ -85,15 +85,4 @@ public class PlayerMovement : MonoBehaviour {
             missileFireTime = Time.time + missileFireRate;
         }
     }
-
-    void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.gameObject.tag == "Enemy") {
-            Destroy(hit.gameObject);
-            if (hit.controller.gameObject.tag == "Player 1") {
-                GameManager.enemiesKilledP1++;
-            } else if (hit.controller.gameObject.tag == "Player 2") {
-                GameManager.enemiesKilledP2++;
-            }
-        }
-    }
 }
