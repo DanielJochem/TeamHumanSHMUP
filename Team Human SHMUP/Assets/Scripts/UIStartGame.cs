@@ -9,6 +9,7 @@ public class UIStartGame : MonoBehaviour {
     public GameObject playerTwo;
     public GameObject closePlane;
     public GameObject farPlane;
+    public GameObject display;
 
     void Awake() {
         //Find all enemies on screen and deactivate them
@@ -22,6 +23,10 @@ public class UIStartGame : MonoBehaviour {
         playerTwo = GameObject.FindGameObjectWithTag("Player 2");
         playerOne.gameObject.SetActive(false);
         playerTwo.gameObject.SetActive(false);
+
+        //Turn off Score
+        display = GameObject.FindGameObjectWithTag("Display");
+        display.gameObject.SetActive(false);
     }
 
     public void OnClick_StartGame() {
@@ -33,11 +38,11 @@ public class UIStartGame : MonoBehaviour {
         closePlane.GetComponent<MovingBackground>().scrollSpeed = 5;
         farPlane.GetComponent<MovingBackground>().scrollSpeed = 5;
 
+        //Turn on Score
+        display.gameObject.SetActive(true);
+
         //This UI element is now inactive
         this.gameObject.SetActive(false);
-
-        //The title is now inactive
-        GameObject.FindGameObjectWithTag("Title").gameObject.SetActive(false);
 
         //Activate enemies once again, will change to activate spawners instead later
         foreach (GameObject enemies in findEnemies) {

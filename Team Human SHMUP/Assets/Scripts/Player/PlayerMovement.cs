@@ -10,11 +10,28 @@ public class PlayerMovement : MonoBehaviour {
     public CharacterController playerOne;
     public CharacterController playerTwo;
 
+    public gameManager GameManager;
+
+    //Weapons System Array
+    public GameObject[] muzzle;
+
+    //Lazor Weapon
+    public GameObject lazor;
+    private float lazorFireTime;
+    private float lazorFireRate = 0.05f;
+
+    //Missile Weapon
+    public GameObject missile;
+    private float missileFireTime;
+    private float missileFireRate = 0.5f;
+
     public float speed = 8.0f;
 
    void Start() {
-        playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
-        playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
+       GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+
+       playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
+       playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
     }
 
     void Update() {
@@ -32,11 +49,51 @@ public class PlayerMovement : MonoBehaviour {
 
         playerOne.Move(playerOnePosition * Time.deltaTime);
         playerTwo.Move(playerTwoPosition * Time.deltaTime);
+
+        fireLazors();
+        fireMissiles();
+
+        //Add to final score??
+        GameManager.timeSurvivedP1 = Time.time;
+        GameManager.timeSurvivedP2 = Time.time;
+    }
+
+    private void fireLazors()
+    {
+        if (Input.GetMouseButton(0) && Time.time > lazorFireTime)
+        {
+
+            for (int i = 0; i < muzzle.Length; i++)
+            {
+                Instantiate(lazor, muzzle[i].transform.position, muzzle[i].transform.rotation);
+            }
+
+            lazorFireTime = Time.time + lazorFireRate;
+        }
+    }
+
+    private void fireMissiles()
+    {
+        if (Input.GetMouseButton(1) && Time.time > missileFireTime)
+        {
+
+            for (int i = 0; i < muzzle.Length; i++)
+            {
+                Instantiate(missile, muzzle[i].transform.position, muzzle[i].transform.rotation);
+            }
+
+            missileFireTime = Time.time + missileFireRate;
+        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
         if (hit.gameObject.tag == "Enemy") {
             Destroy(hit.gameObject);
+            if (hit.controller.gameObject.tag == "Player 1") {
+                GameManager.enemiesKilledP1++;
+            } else if (hit.controller.gameObject.tag == "Player 2") {
+                GameManager.enemiesKilledP2++;
+            }
         }
     }
 }
