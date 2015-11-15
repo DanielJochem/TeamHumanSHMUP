@@ -5,13 +5,13 @@ public class Missile : MonoBehaviour {
 
 	gameManager GameManager;
 	
-	private float projectileSpeed = 150.0f;
+	private float projectileSpeed = 10.0f;
 	private float rotationSpeed = 10.0f;
 	
 	private GameObject closestEnemyUnit;
 	
 	private float lifeTime;
-	private float lifeTimeDuration = 2.0f;
+	private float lifeTimeDuration = 5.0f;
 	
 	private float damage = 50.0f;
 

@@ -60,15 +60,15 @@
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerMissile.cs" />
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerTilt.cs" />
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\WaveStart.cs" />
-     <Compile Include="Assets\Scripts\Enemies.cs" />
-     <Compile Include="Assets\Scripts\EnemyDrone.cs" />
-     <Compile Include="Assets\Scripts\Lazer.cs" />
-     <Compile Include="Assets\Scripts\Missile.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Enemies.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyDrone.cs" />
      <Compile Include="Assets\Scripts\MovingBackground.cs" />
+     <Compile Include="Assets\Scripts\Player\Lazer.cs" />
+     <Compile Include="Assets\Scripts\Player\Missile.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLazors.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
      <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />
-     <Compile Include="Assets\Scripts\UIStartGame.cs" />
+     <Compile Include="Assets\Scripts\UI\UIStartGame.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

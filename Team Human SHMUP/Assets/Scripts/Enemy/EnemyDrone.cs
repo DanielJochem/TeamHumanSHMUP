@@ -11,4 +11,12 @@ public class EnemyDrone : Enemies {
         moveSpeed = 5.0f;
         addPlayers();
     }
+
+    public void OnTriggerExit(Collider wall)
+    {
+        if (wall.gameObject.tag == "EnemyWall")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

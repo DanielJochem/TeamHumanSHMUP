@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerManagement : MonoBehaviour {
     //Player starting positions
     public Vector3 playerOnePosition = new Vector3(0, 0, 0);
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
@@ -18,12 +18,12 @@ public class PlayerMovement : MonoBehaviour {
     //Lazor Weapon
     public GameObject lazor;
     private float lazorFireTime;
-    private float lazorFireRate = 0.05f;
+    private float lazorFireRate = 0.1f;
 
     //Missile Weapon
     public GameObject missile;
     private float missileFireTime;
-    private float missileFireRate = 0.5f;
+    private float missileFireRate = 3f;
 
     public float speed = 8.0f;
 
@@ -36,13 +36,13 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
-            playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical"));
+            playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical")).normalized;
             playerOnePosition = transform.TransformDirection(playerOnePosition);
             playerOnePosition *= speed;
         }
             
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)) {
-            playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical"));
+            playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical")).normalized;
             playerTwoPosition = transform.TransformDirection(playerTwoPosition);
             playerTwoPosition *= speed;
         }
