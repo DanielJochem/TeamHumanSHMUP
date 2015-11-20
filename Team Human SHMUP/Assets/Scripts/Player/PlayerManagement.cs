@@ -25,6 +25,8 @@ public class PlayerManagement : MonoBehaviour {
     private float missileFireTime;
     private float missileFireRate = 3f;
 
+    public SpawnSpaceStuff spaceObjects;
+
     public float speed = 8.0f;
 
    void Start() {
@@ -76,7 +78,7 @@ public class PlayerManagement : MonoBehaviour {
     {
         if (Input.GetMouseButton(1) && Time.time > missileFireTime)
         {
-
+            spaceObjects.Spawn();
             for (int i = 0; i < muzzle.Length; i++)
             {
                 Instantiate(missile, muzzle[i].transform.position, muzzle[i].transform.rotation);

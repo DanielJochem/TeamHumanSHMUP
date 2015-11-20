@@ -71,7 +71,11 @@
      <Compile Include="Assets\Scripts\Player\Missile.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLazors.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
+     <Compile Include="Assets\Scripts\Player1Joystick.cs" />
+     <Compile Include="Assets\Scripts\Player2Joystick.cs" />
      <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />
+     <Compile Include="Assets\Scripts\SpawnSpaceStuff.cs" />
+     <Compile Include="Assets\Scripts\UI\UIDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\UIStartGame.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
@@ -102,11 +106,11 @@
  <Reference Include="ProBuilderCore-Unity5">
  <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
- <Reference Include="KDTree">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
- </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
  <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ </Reference>
+ <Reference Include="KDTree">
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
