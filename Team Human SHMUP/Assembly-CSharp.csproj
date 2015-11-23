@@ -70,7 +70,11 @@
      <Compile Include="Assets\Scripts\Player\Missile.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLazors.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
+     <Compile Include="Assets\Scripts\Player1Joystick.cs" />
+     <Compile Include="Assets\Scripts\Player2Joystick.cs" />
      <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />
+     <Compile Include="Assets\Scripts\SpawnSpaceStuff.cs" />
+     <Compile Include="Assets\Scripts\UI\UIDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\UIStartGame.cs" />
      <Compile Include="Assets\Scripts\gameManager.cs" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
@@ -102,13 +106,13 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>/Users/ReneeCrompton1/TeamHumanSHMUP/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>/Users/ReneeCrompton1/Desktop/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>/Users/ReneeCrompton1/TeamHumanSHMUP/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>/Users/ReneeCrompton1/Desktop/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>/Users/ReneeCrompton1/TeamHumanSHMUP/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>/Users/ReneeCrompton1/Desktop/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
