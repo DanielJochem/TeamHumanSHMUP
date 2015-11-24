@@ -8,9 +8,6 @@ public class Player1Joystick : MonoBehaviour {
 	private float tiltZ;
 	private Vector3 playerPosition;
 	public float moveSpeed = 100f;
-
-	//Player starting positions
-	public Vector3 playerOnePosition = new Vector3(0, 0, 0);
 	
 	//The CharacterController on both players
 	public CharacterController playerOne;
@@ -32,21 +29,21 @@ public class Player1Joystick : MonoBehaviour {
 		JoystickMovement ();
 	}
 
-		private void JoystickMovement()
-		{
-			playerPosition = myTransform.position;
-			if (Input.GetAxis ("LeftJoystickVertical") != 0) {
-				float axis = Input.GetAxis ("LeftJoystickVertical");
-				playerPosition.z += axis * moveSpeed * Time.deltaTime;
-				tiltZ = axis * 20f;
-			} else {
-				tiltZ = 0.0f;
-			}
-			if (Input.GetAxis ("LeftJoystickHorizontal") != 0) {
-				float axis = Input.GetAxis ("LeftJoystickHorizontal");
-				playerPosition.x += axis * this.moveSpeed * Time.deltaTime;
-				tiltX = axis * 20f;
-			}
-			myTransform.position = playerPosition;
+	void JoystickMovement()
+	{
+		playerPosition = myTransform.position;
+		if (Input.GetAxis ("LeftJoystickVertical") != 0) {
+			float axis = Input.GetAxis ("LeftJoystickVertical");
+			playerPosition.z += axis * moveSpeed * Time.deltaTime;
+			tiltZ = axis * 20f;
+		} else {
+			tiltZ = 0.0f;
 		}
+		if (Input.GetAxis ("LeftJoystickHorizontal") != 0) {
+			float axis = Input.GetAxis ("LeftJoystickHorizontal");
+			playerPosition.x += axis * this.moveSpeed * Time.deltaTime;
+			tiltX = axis * 20f;
+		}
+		myTransform.position = playerPosition;
 	}
+}

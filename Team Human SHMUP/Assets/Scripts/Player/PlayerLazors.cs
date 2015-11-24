@@ -5,10 +5,10 @@ public class PlayerLazors : MonoBehaviour {
 
     gameManager GameManager;
 
-    private float projectileSpeed = 500.0f;
+    private float projectileSpeed = 80.0f;
 
     private float lifeTime;
-    private float lifeTimeDuration = 0.8f;
+    private float lifeTimeDuration = 0.5f;
 
     private float damage = 20.0f;
 

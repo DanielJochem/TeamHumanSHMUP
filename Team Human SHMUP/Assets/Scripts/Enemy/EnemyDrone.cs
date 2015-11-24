@@ -8,7 +8,7 @@ public class EnemyDrone : Enemies {
     {
         name = "Drone";
         health = 100.0f;
-        moveSpeed = 5.0f;
+        moveSpeed = 3.0f;
         addPlayers();
     }
 

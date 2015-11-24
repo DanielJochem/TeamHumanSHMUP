@@ -11,11 +11,6 @@ public class UIDisplay : MonoBehaviour {
         display.SetActive(false);
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     //Turn on Score
     public void ScoreOn()
     {
