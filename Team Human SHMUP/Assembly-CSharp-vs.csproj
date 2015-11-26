@@ -65,14 +65,15 @@
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerTilt.cs" />
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\WaveStart.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemies.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyBoosterBot.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyDrone.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyInterceptor.cs" />
      <Compile Include="Assets\Scripts\MovingBackground.cs" />
-     <Compile Include="Assets\Scripts\Player\Lazer.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMachineGun.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerRocketLauncher.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShotgun.cs" />
+     <Compile Include="Assets\Scripts\Player\Weapons.cs" />
      <Compile Include="Assets\Scripts\Player1Joystick.cs" />
      <Compile Include="Assets\Scripts\Player2Joystick.cs" />
      <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />

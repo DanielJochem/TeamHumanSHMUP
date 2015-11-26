@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Enemies : MonoBehaviour {
+    
+    public gameManager GameManager;
 
+    public string name = "";
     public float health;
     public float moveSpeed;
-    public string name = "";
+    public int points;
 
     public GameObject closestPlayer;
     public List<GameObject> players = new List<GameObject>();
@@ -19,6 +22,10 @@ public class Enemies : MonoBehaviour {
     //For later use
     //public GameObject deathExplosion;
 
+    void Start() {
+        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+    }
+
     public void addPlayers()
     {
         players.Add(GameObject.FindGameObjectWithTag("Player 1"));
@@ -27,11 +34,9 @@ public class Enemies : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        FollowPlayer();
-        transform.position += Time.deltaTime * moveSpeed * transform.forward;
-
         //Kill Check
         if (health <= 0) {
+            print("" + name + " is dead");
             Destroy(this.gameObject);
 
             //For later use
@@ -43,7 +48,6 @@ public class Enemies : MonoBehaviour {
         health -= damage;
         print("" + name + " taking damage");
     }
-
 
     public void FindClosestPlayer() {
         for (int index = 0; index < players.Count; index++) {

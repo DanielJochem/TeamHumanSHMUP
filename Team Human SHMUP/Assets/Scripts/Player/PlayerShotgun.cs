@@ -1,48 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerShotgun : MonoBehaviour {
+public class PlayerShotgun : Weapons {
 
-    gameManager GameManager;
-
-    private float projectileSpeed = 60.0f;
-
-    private float lifeTime;
-    private float lifeTimeDuration = 1.5f;
-
-    private float modifiedTime = Time.time + 10.0f;
-
-    private float damage = 20.0f;
-
-    // Use this for initialization
     void Start() {
-        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+        projectileSpeed = 50.0f;
+        lifeTime = 0;
+        lifeTimeDuration = 1.5f;
+        damage = 20.0f;
+
         lifeTime = Time.time + lifeTimeDuration;
     }
 
-    // Update is called once per frame
-    void Update() {
-        //Projectile Movement
-        transform.position += Time.deltaTime * projectileSpeed * transform.forward;
+    void Update()
+    {
+        //Movement
+        this.transform.position += Time.deltaTime * projectileSpeed * this.transform.forward;
 
         //Kill projectile after time
-        if (Time.time > lifeTime) {
+        if (Time.time > lifeTime)
+        {
             Destroy(this.gameObject);
-        }
-    }
-
-    void OnTriggerEnter(Collider collider) {
-        if (collider.tag == "Enemy") {
-            collider.GetComponent<Enemies>().takeDamage(damage);
-            Destroy(this.gameObject);
-
-            if (collider.GetComponent<Enemies>().health <= 0) {
-                if (this.gameObject.tag == "P1Fired") {
-                    GameManager.enemiesKilledP1++;
-                } else if (this.gameObject.tag == "P2Fired") {
-                    GameManager.enemiesKilledP2++;
-                }
-            }
         }
     }
 }

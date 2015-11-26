@@ -13,10 +13,10 @@ public class gameManager : MonoBehaviour
     public float timeSurvivedP2;
 
     //Enemies Killed UI
-    public Text p1KilledEnemiesText;
-    public Text p2KilledEnemiesText;
-    public int enemiesKilledP1;
-    public int enemiesKilledP2;
+    public Text p1ScoreText;
+    public Text p2ScoreText;
+    public int p1Score;
+    public int p2Score;
 
     //Player Lives UI
     public Text p1Lives;
@@ -36,12 +36,12 @@ public class gameManager : MonoBehaviour
         enemyUnitList = GameObject.FindGameObjectsWithTag("Enemy");
 
         //Enemies Killed
-        p1KilledEnemiesText.text = "P1 Enemies Killed: " + enemiesKilledP1;
-        p2KilledEnemiesText.text = "P2 Enemies Killed: " + enemiesKilledP2;
+        p1ScoreText.text = "P1 Score: " + p1Score;
+        p2ScoreText.text = "P2 Score: " + p2Score;
 
         //Player Lives
-        p1Lives.text = "P1 Lives Remaining: " + p1LivesRemaining;
-        p2Lives.text = "P2 Lives Remaining: " + p2LivesRemaining;
+        p1Lives.text = "P1 Lives: " + p1LivesRemaining;
+        p2Lives.text = "P2 Lives: " + p2LivesRemaining;
     }
 }
 

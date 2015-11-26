@@ -42,13 +42,13 @@ public class SpawnSpaceStuff : MonoBehaviour
 
         Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
         newPosition = transform.position + newPosition;
-        newPosition.x = Mathf.Clamp(newPosition.x, -40, 40);
+        newPosition.x = Mathf.Clamp(newPosition.x, -27.5f, 50.5f);
         transform.position = newPosition;
-        if (newPosition.x >= 40)
+        if (newPosition.x >= 50.5f)
         {
             direction = Vector3.left;
         }
-        else if (newPosition.x <= -40)
+        else if (newPosition.x <= -27.5f)
         {
             direction = Vector3.right;
         }

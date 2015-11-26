@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerRocketLauncher : MonoBehaviour {
+public class PlayerRocketLauncher : Weapons {
 
 	gameManager GameManager;
-	
-	private float projectileSpeed = 10.0f;
-	private float rotationSpeed = 10.0f;
-	
-	private GameObject closestEnemyUnit;
-	
-	private float lifeTime;
-	private float lifeTimeDuration = 5.0f;
-	
-	private float damage = 50.0f;
 
-	// Use this for initialization
-	void Start () {
+    private GameObject closestEnemyUnit;
+    public float rotationSpeed = 10.0f;
+    
+    // Use this for initialization
+    void Start () {
 		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
-		lifeTime = Time.time + lifeTimeDuration;
-	}
+
+        projectileSpeed = 10.0f;
+        lifeTime = 0;
+        lifeTimeDuration = 5.0f;
+        damage = 50.0f;
+        
+        lifeTime = Time.time + lifeTimeDuration;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,11 +34,6 @@ public class PlayerRocketLauncher : MonoBehaviour {
 			
 			//Smoothly rotate towards the target point.
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-		}
-		
-		//Kill projectile after time
-		if(Time.time>lifeTime) {
-			Destroy (this.gameObject);
 		}
 	}
 	
@@ -59,20 +53,5 @@ public class PlayerRocketLauncher : MonoBehaviour {
 			}
 		}
 		return closestEnemyUnit;
-	}
-	
-	void OnTriggerEnter(Collider collider) {
-		if(collider.tag == "Enemy") {
-            collider.GetComponent<Enemies>().takeDamage(damage);
-            Destroy(this.gameObject);
-
-            if (collider.GetComponent<Enemies>().health <= 0) {
-                if (this.gameObject.tag == "P1Fired") {
-                    GameManager.enemiesKilledP1++;
-                } else if (this.gameObject.tag == "P2Fired") {
-                    GameManager.enemiesKilledP2++;
-                }
-            }
-        }
 	}
 }

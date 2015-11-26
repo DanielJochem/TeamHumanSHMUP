@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyDrone : Enemies {
+public class EnemyBoosterBot : Enemies {
 
     void Start() {
-        name = "Drone";
+        name = "Booster Bot";
         health = 100.0f;
         moveSpeed = 3.0f;
-        points = 10;
+        points = 100;
         addPlayers();
     }
 
