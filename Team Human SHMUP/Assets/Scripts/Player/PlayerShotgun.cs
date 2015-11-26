@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerLazors : MonoBehaviour {
+public class PlayerShotgun : MonoBehaviour {
 
     gameManager GameManager;
 
-    private float projectileSpeed = 80.0f;
+    private float projectileSpeed = 60.0f;
 
     private float lifeTime;
-    private float lifeTimeDuration = 0.5f;
+    private float lifeTimeDuration = 1.5f;
+
+    private float modifiedTime = Time.time + 10.0f;
 
     private float damage = 20.0f;
 
@@ -20,7 +22,7 @@ public class PlayerLazors : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //Movement
+        //Projectile Movement
         transform.position += Time.deltaTime * projectileSpeed * transform.forward;
 
         //Kill projectile after time

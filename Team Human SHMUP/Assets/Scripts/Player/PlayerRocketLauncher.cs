@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Missile : MonoBehaviour {
+public class PlayerRocketLauncher : MonoBehaviour {
 
 	gameManager GameManager;
 	

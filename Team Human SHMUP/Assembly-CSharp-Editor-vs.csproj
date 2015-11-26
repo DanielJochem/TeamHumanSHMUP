@@ -99,16 +99,16 @@
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderEditor-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/Team Human SHMUP/Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

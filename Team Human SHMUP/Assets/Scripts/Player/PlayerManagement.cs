@@ -11,27 +11,32 @@ public class PlayerManagement : MonoBehaviour {
     public CharacterController playerTwo;
 
     public gameManager GameManager;
+    public Quaternion rotate;
 
-    //Weapons System Array
-    public GameObject[] muzzle;
+    //Weapons fire from here
+    public GameObject muzzle;
 
     //Lazor Weapon
-    public GameObject lazor;
-    private float lazorFireTime;
-    private float lazorFireRate = 0.1f;
+    public GameObject machineGun;
+    private float machineGunFireTime;
+    private float machineGunFireRate = 0.1f;
 
     //Missile Weapon
-    public GameObject missile;
-    private float missileFireTime;
-    private float missileFireRate = 5.0f;
+    public GameObject rocketLauncher;
+    private float rocketLauncherFireTime;
+    private float rocketLauncherFireRate = 5.0f;
 
-    public SpawnSpaceStuff spaceObjects;
+    //Shotgun Weapon
+    public GameObject shotgun;
+    private float shotgunFireTime;
+    private float shotgunFireRate = 2.0f;
 
     public float keySpeed = 8.0f;
     public float joySpeed = 100.0f;
 
     void Start() {
        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+       rotate = muzzle.transform.rotation;
 
        playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
        playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
@@ -84,8 +89,9 @@ public class PlayerManagement : MonoBehaviour {
         playerOne.Move(playerOnePosition * Time.deltaTime);
         playerTwo.Move(playerTwoPosition * Time.deltaTime);
 
-        fireLazors();
-        fireMissiles();
+        fireMachineGun();
+        fireRocketLauncher();
+        fireShotgun();
 
         //Add to final score??
         GameManager.timeSurvivedP1 = Time.time;
@@ -114,24 +120,31 @@ public class PlayerManagement : MonoBehaviour {
         transform.position = playerPosition;
     }*/
 
-    void fireLazors() {
-        if (Input.GetMouseButton(0) && Time.time > lazorFireTime) {
-            for (int i = 0; i < muzzle.Length; i++) {
-                Instantiate(lazor, muzzle[i].transform.position, muzzle[i].transform.rotation);
-            }
-
-            lazorFireTime = Time.time + lazorFireRate;
+    void fireMachineGun() {
+        if (Input.GetMouseButton(0) && Time.time > machineGunFireTime) {
+            Instantiate(machineGun, muzzle.transform.position, muzzle.transform.rotation);
+            machineGunFireTime = Time.time + machineGunFireRate;
         }
     }
 
-    void fireMissiles() {
-        if (Input.GetMouseButton(1) && !Input.GetMouseButton(0) && Time.time > missileFireTime) {
-            spaceObjects.Spawn();
-            for (int i = 0; i < muzzle.Length; i++) {
-                Instantiate(missile, muzzle[i].transform.position, muzzle[i].transform.rotation);
-            }
+    void fireRocketLauncher() {
+        if (Input.GetMouseButton(1) && !Input.GetMouseButton(0) && Time.time > rocketLauncherFireTime) {
+            Instantiate(rocketLauncher, muzzle.transform.position, muzzle.transform.rotation);
+            rocketLauncherFireTime = Time.time + rocketLauncherFireRate;
+        }
+    }
 
-            missileFireTime = Time.time + missileFireRate;
+    void fireShotgun() {
+        if (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)) && Time.time > shotgunFireTime) {
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+            rotate.z += 20.0f;
+            rotate.x += 0.1f;
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+            rotate.z -= 40.0f;
+            rotate.x -= 0.2f;
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+
+            shotgunFireTime = Time.time + shotgunFireRate;
         }
     }
 }
