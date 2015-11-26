@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B0167B03-E8C9-BCDC-FF39-58F2ADB138EF}</ProjectGuid>
+    <ProjectGuid>{7F1973C6-463F-4A78-EB99-A27AD80D429A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -51,32 +51,86 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WP8.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WP8.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Metro.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Metro.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Tizen.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Tizen.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.SamsungTV.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.SamsungTV.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
@@ -93,43 +147,38 @@
     <Reference Include="KDTree">
       <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
     </Reference>
+    <Reference Include="ProBuilderEditor-Unity5">
+      <HintPath>Assets\ProCore\ProBuilder\Editor\ProBuilderEditor-Unity5.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Instantiation\ProBuilderInstantiate.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\CubeController.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Enemy2.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\EnemyLazor.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Lazor.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PickUpRotate.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\Player2Controller.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerHitBox.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerMissile.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerTilt.cs" />
-    <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\WaveStart.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Enemies.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyDrone.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyInterceptor.cs" />
-    <Compile Include="Assets\Scripts\MovingBackground.cs" />
-    <Compile Include="Assets\Scripts\Player\Lazer.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerMachineGun.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerRocketLauncher.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerShotgun.cs" />
-    <Compile Include="Assets\Scripts\Player1Joystick.cs" />
-    <Compile Include="Assets\Scripts\Player2Joystick.cs" />
-    <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />
-    <Compile Include="Assets\Scripts\SpawnSpaceStuff.cs" />
-    <Compile Include="Assets\Scripts\UI\UIDisplay.cs" />
-    <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
-    <Compile Include="Assets\Scripts\UI\UIStartGame.cs" />
-    <Compile Include="Assets\Scripts\gameManager.cs" />
+    <ProjectReference Include="Team Human SHMUP.CSharp.csproj">
+      <Project>{B0167B03-E8C9-BCDC-FF39-58F2ADB138EF}</Project>
+      <Name>Team Human SHMUP.CSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\ProCore\ProBuilder\About\Editor\pb_AboutWindow.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Actions\pb_GenerateUV2.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Geometry\pb_DetachDeleteFace.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Geometry\pb_ExtrudeElement.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Geometry\pb_FlipNormals.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Geometry\pb_SetPivot.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_CleanLeakedMeshes.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_ForceSceneRefresh.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_RemoveDegenerateTris.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_RepairColors.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_RepairMeshReferences.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_RepairUV.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Repair\pb_ResetEntityMaterials.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Selection\pb_EdgeSelection.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Selection\pb_ExpandSelection.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Selection\pb_InvertSelection.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\MenuItems\Selection\pb_MaterialSelection.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_MenuItems.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_MissingScriptEditor.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_Preferences.cs" />
+    <Compile Include="Assets\ProCore\ProBuilder\Editor\pb_ScenePostProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
