@@ -15,12 +15,8 @@
 # =============== #
 [Tt]emp/
 [Oo]bj/
-[Bb]uild
-/Library/metadata/
-/Library/FailedAssetImports.txt
-/Library/cache/
-/Library/previews/
-/Library/ScriptAssemblies
+[Bb]uild/
+/Library/
 sysinfo.txt
 *.stackdump
  
@@ -233,3 +229,4 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+Team Human SHMUP/Library/

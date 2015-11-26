@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class UIStartGame : MonoBehaviour {
 
+    public UIDisplay score;
+
     public GameObject[] findEnemies;
     public GameObject playerOne;
     public GameObject playerTwo;
     public GameObject closePlane;
     public GameObject farPlane;
-    public GameObject display;
+    public GameObject spaceSpawners;
 
     void Awake() {
         //Find all enemies on screen and deactivate them
@@ -24,9 +26,8 @@ public class UIStartGame : MonoBehaviour {
         playerOne.gameObject.SetActive(false);
         playerTwo.gameObject.SetActive(false);
 
-        //Turn off Score
-        display = GameObject.FindGameObjectWithTag("Display");
-        display.gameObject.SetActive(false);
+        spaceSpawners = GameObject.FindGameObjectWithTag("SpaceSpawners");
+        spaceSpawners.SetActive(false);
     }
 
     public void OnClick_StartGame() {
@@ -38,11 +39,14 @@ public class UIStartGame : MonoBehaviour {
         closePlane.GetComponent<MovingBackground>().scrollSpeed = 5;
         farPlane.GetComponent<MovingBackground>().scrollSpeed = 5;
 
-        //Turn on Score
-        display.gameObject.SetActive(true);
-
         //This UI element is now inactive
         this.gameObject.SetActive(false);
+
+        //Turn falling space object spawners on
+        spaceSpawners.SetActive(true);
+
+        //Turn score on
+        score.ScoreOn();
 
         //Activate enemies once again, will change to activate spawners instead later
         foreach (GameObject enemies in findEnemies) {
