@@ -64,10 +64,14 @@
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerMissile.cs" />
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\PlayerTilt.cs" />
      <Compile Include="Assets\Scripts\&apos;Reference&apos; Scripts\WaveStart.cs" />
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemies.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyBoosterBot.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyDrone.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyInterceptor.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyMachineGun.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyRocketLauncher.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyShotgun.cs" />
      <Compile Include="Assets\Scripts\MovingBackground.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMachineGun.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManagement.cs" />

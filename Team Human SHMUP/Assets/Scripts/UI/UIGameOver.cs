@@ -5,11 +5,15 @@ using System.Collections.Generic;
 
 public class UIGameOver : MonoBehaviour {
 
+    gameManager GameManager;
+
     public GameObject restart;
     public List<Text> gameOverMessages = new List<Text>();
 
-    void Awake()
-    {
+    void Awake() {
+
+        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+
         restart = this.gameObject;
 
         //Allocate what GameOver message is going to display when the game is over.
@@ -23,8 +27,9 @@ public class UIGameOver : MonoBehaviour {
         restart.SetActive(false);
     }
 
-    public void OnClick_RestartGame()
-    {
+    public void OnClick_RestartGame() {
+        GameManager.ClickMe();
+
         Application.LoadLevel(Application.loadedLevel);
         restart.SetActive(false);
     }

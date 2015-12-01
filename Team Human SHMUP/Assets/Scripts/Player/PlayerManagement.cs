@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerManagement : MonoBehaviour {
+
     //Player starting positions
     public Vector3 playerOnePosition = new Vector3(0, 0, 0);
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
@@ -12,6 +13,8 @@ public class PlayerManagement : MonoBehaviour {
 
     public gameManager GameManager;
     public Quaternion rotate;
+    
+    public float health = 100.0f;
 
     //Weapons fire from here
     public GameObject muzzle;
@@ -93,9 +96,44 @@ public class PlayerManagement : MonoBehaviour {
         fireRocketLauncher();
         fireShotgun();
 
+        //Kill Check
+        if (health <= 0) {
+            if (this.gameObject.tag == "Player 1") {
+                if (GameManager.p1LivesRemaining > 0) {
+                    print(this.gameObject.tag + " lost a life");
+                    this.transform.position = playerOnePosition;
+                    GameManager.p1LivesRemaining--;
+                } else {
+                    print(this.gameObject.tag + " died");
+                    Destroy(this.gameObject);
+                    //For later use
+                    //Instantiate(deathExplosion, transform.position, transform.rotation);
+                }
+            }
+
+            if (this.gameObject.tag == "Player 2") {
+                if (GameManager.p1LivesRemaining > 0) {
+                    print(this.gameObject.tag + " lost a life");
+                    this.transform.position = playerOnePosition;
+                    GameManager.p2LivesRemaining--;
+                }  else {
+                    print(this.gameObject.tag + " died");
+                    Destroy(this.gameObject);
+                    //For later use
+                    //Instantiate(deathExplosion, transform.position, transform.rotation);
+                }
+            }
+        }
+
         //Add to final score??
         GameManager.timeSurvivedP1 = Time.time;
         GameManager.timeSurvivedP2 = Time.time;
+    }
+
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+        print("" + name + " taking damage");
     }
 
     /*void JoystickMovement()
@@ -122,6 +160,7 @@ public class PlayerManagement : MonoBehaviour {
 
     void fireMachineGun() {
         if (Input.GetMouseButton(0) && Time.time > machineGunFireTime) {
+            AudioManager.Instance.LazerFireAudioSound();
             Instantiate(machineGun, muzzle.transform.position, muzzle.transform.rotation);
             machineGunFireTime = Time.time + machineGunFireRate;
         }
@@ -129,6 +168,7 @@ public class PlayerManagement : MonoBehaviour {
 
     void fireRocketLauncher() {
         if (Input.GetMouseButton(1) && !Input.GetMouseButton(0) && Time.time > rocketLauncherFireTime) {
+            AudioManager.Instance.RocketFireAudioSound();
             Instantiate(rocketLauncher, muzzle.transform.position, muzzle.transform.rotation);
             rocketLauncherFireTime = Time.time + rocketLauncherFireRate;
         }
@@ -136,6 +176,7 @@ public class PlayerManagement : MonoBehaviour {
 
     void fireShotgun() {
         if (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)) && Time.time > shotgunFireTime) {
+            AudioManager.Instance.RocketFireAudioSound();
             Instantiate(shotgun, muzzle.transform.position, rotate);
             rotate.z += 20.0f;
             rotate.x += 0.1f;

@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyInterceptor : Enemies {
 
     Vector3 direction = Vector3.left;
     Vector3 moveForward;
+    public Quaternion rotate;
+
+    //Shotgun Weapon
+    public GameObject shotgun;
+    private float shotgunFireTime;
+    private float shotgunFireRate = 1.0f;
+
+    //Weapon fires from here
+    public GameObject muzzle;
 
     void Start() {
         name = "Interceptor";
@@ -15,7 +25,6 @@ public class EnemyInterceptor : Enemies {
 
         moveForward = transform.position;
     }
-
 
     void FixedUpdate()
     {
@@ -33,15 +42,43 @@ public class EnemyInterceptor : Enemies {
             moveForward.z = transform.position.z + 5;
             direction = Vector3.right;
         }
+
+        fireShotgun();
     }
 
-    void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "P1Fired") {
-            GameManager.p1Score += points;
-        } else if (collider.gameObject.tag == "P2Fired") {
-            GameManager.p2Score += points;
+    void fireShotgun()
+    {
+        if (Time.time > shotgunFireTime)
+        {
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+            rotate.z += 20.0f;
+            rotate.x += 0.1f;
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+            rotate.z -= 40.0f;
+            rotate.x -= 0.2f;
+            Instantiate(shotgun, muzzle.transform.position, rotate);
+
+            shotgunFireTime = Time.time + shotgunFireRate;
         }
-        Destroy(this.gameObject);
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("Entered");
+        if (collider.gameObject.tag == "P1Fired")
+        {
+            Debug.Log("P1");
+            GameManager.p1Score += points;
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
+        }
+        else if (collider.gameObject.tag == "P2Fired")
+        {
+            Debug.Log("P2");
+            GameManager.p2Score += points;
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
+        }
     }
 
     public void OnTriggerExit(Collider wall) {

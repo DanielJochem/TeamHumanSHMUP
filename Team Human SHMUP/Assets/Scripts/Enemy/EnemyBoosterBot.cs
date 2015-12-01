@@ -1,7 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBoosterBot : Enemies {
+
+    //Missile Weapon
+    public GameObject rocketLauncher;
+    private float rocketLauncherFireTime;
+    private float rocketLauncherFireRate = 5.0f;
+
+    //Weapon fires from here
+    public GameObject muzzle;
 
     void Start() {
         name = "Booster Bot";
@@ -13,16 +22,36 @@ public class EnemyBoosterBot : Enemies {
 
     void Update() {
         FollowPlayer();
+        fireRocketLauncher();
         transform.position += Time.deltaTime * moveSpeed * transform.forward;
     }
 
-    void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "P1Fired") {
+    void fireRocketLauncher()
+     {
+         if (Time.time > rocketLauncherFireTime)
+         {
+             Instantiate(rocketLauncher, muzzle.transform.position, muzzle.transform.rotation);
+             rocketLauncherFireTime = Time.time + rocketLauncherFireRate;
+         }
+     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("Entered");
+        if (collider.gameObject.tag == "P1Fired")
+        {
+            Debug.Log("P1");
             GameManager.p1Score += points;
-        } else if (collider.gameObject.tag == "P2Fired") {
-            GameManager.p2Score += points;
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        else if (collider.gameObject.tag == "P2Fired")
+        {
+            Debug.Log("P2");
+            GameManager.p2Score += points;
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
+        }
     }
 
     public void OnTriggerExit(Collider wall) {
