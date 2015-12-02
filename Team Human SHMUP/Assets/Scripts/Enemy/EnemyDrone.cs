@@ -14,7 +14,7 @@ public class EnemyDrone : Enemies {
 
     void Start() {
         name = "Drone";
-        health = 100.0f;
+        health = 20.0f;
         moveSpeed = 3.0f;
         points = 10;
         addPlayers();
@@ -36,20 +36,10 @@ public class EnemyDrone : Enemies {
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Entered");
-        if (collider.gameObject.tag == "P1Fired")
+        whoHitMeLast = collider.gameObject.tag;
+        if (collider.gameObject.tag == "P1Fired" || collider.gameObject.tag == "P2Fired")
         {
-            Debug.Log("P1");
-            GameManager.p1Score += points;
-            Debug.Log("Destroy");
-            Destroy(this.gameObject);
-        }
-        else if (collider.gameObject.tag == "P2Fired")
-        {
-            Debug.Log("P2");
-            GameManager.p2Score += points;
-            Debug.Log("Destroy");
-            Destroy(this.gameObject);
+            Destroy(collider.gameObject);
         }
     }
 

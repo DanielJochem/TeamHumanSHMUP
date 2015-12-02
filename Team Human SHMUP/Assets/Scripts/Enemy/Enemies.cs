@@ -13,11 +13,17 @@ public class Enemies : MonoBehaviour {
 
     public GameObject closestPlayer;
     public List<GameObject> players = new List<GameObject>();
+    public string whoHitMeLast = "";
 
     //Rotation Vars
     private float rotationSpeed = 2.0f;
     float rotateSpeed;
     private Quaternion targetRotation;
+
+    protected float projectileSpeed;
+    protected float projectileLifeTime;
+    protected float projectileLifeTimeDuration;
+    protected int projectileDamage;
 
     //For later use
     //public GameObject deathExplosion;
@@ -30,7 +36,6 @@ public class Enemies : MonoBehaviour {
     void Update() {
         //Kill Check
         if (health <= 0) {
-            print("" + name + " is dead");
             Destroy(this.gameObject);
 
             //For later use
@@ -79,6 +84,15 @@ public class Enemies : MonoBehaviour {
     public void takeDamage(float damage) {
         AudioManager.Instance.HitAudioSound();
         health -= damage;
-        print("" + name + " taking damage");
+        if(health <= 0) {
+            AudioManager.Instance.ExplosionAudioSound();
+            if (whoHitMeLast == "P1Fired") {
+                GameManager.p1Score += points;
+            } else {
+                GameManager.p2Score += points;
+            }
+            
+            Destroy(this.gameObject);
+        }
     }
 }

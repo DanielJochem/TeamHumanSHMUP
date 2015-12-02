@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyShotgun : MonoBehaviour {
-
-    public float projectileSpeed;
-    public float projectileLifeTime;
-    public float projectileLifeTimeDuration;
-    public float projectileDamage;
+public class EnemyShotgun : Enemies {
 
     void Start() {
         projectileSpeed = 40.0f;
         projectileLifeTime = 0.0f;
         projectileLifeTimeDuration = 1.0f;
-        projectileDamage = 20.0f;
+        projectileDamage = 20;
 
         projectileLifeTime = Time.time + projectileLifeTimeDuration;
     }
@@ -33,7 +28,12 @@ public class EnemyShotgun : MonoBehaviour {
     {
         if (otherObject.tag == "Player 1")
         {
-            // otherObject.GetComponent<PlayerManagement>().takeDamage(damage);
+            otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
+            Destroy(this.gameObject);
+        }
+        else if (otherObject.tag == "Player 2")
+        {
+            otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
             Destroy(this.gameObject);
         }
     }

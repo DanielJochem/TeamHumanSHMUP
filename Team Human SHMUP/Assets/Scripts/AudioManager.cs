@@ -47,12 +47,12 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void ExplosionAudioSound()
     {
-        PlaySound(audioSource, ExplosionAudio, 1000.00f);
+        PlaySound(audioSource, ExplosionAudio, 10.00f);
     }
 
     public void HitAudioSound()
     {
-        PlaySound(audioSource, HitAudio, 10.00f);
+        PlaySound(audioSource, HitAudio, 5.0f);
     }
 
     public void LazerFireAudioSound()

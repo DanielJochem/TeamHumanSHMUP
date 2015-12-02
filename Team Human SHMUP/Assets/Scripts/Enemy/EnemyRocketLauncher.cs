@@ -2,14 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyRocketLauncher : MonoBehaviour {
+public class EnemyRocketLauncher : Enemies {
 
     gameManager GameManager;
-
-    public float projectileSpeed;
-    public float projectileLifeTime;
-    public float projectileLifeTimeDuration;
-    public float projectileDamage;
 
     private GameObject closestPlayer;
     public float rotationSpeed = 10.0f;
@@ -22,7 +17,7 @@ public class EnemyRocketLauncher : MonoBehaviour {
         projectileSpeed = 10.0f;
         projectileLifeTime = 0.0f;
         projectileLifeTimeDuration = 5.0f;
-        projectileDamage = 50.0f;
+        projectileDamage = 50;
 
         projectileLifeTime = Time.time + projectileLifeTimeDuration;
     }
@@ -71,5 +66,19 @@ public class EnemyRocketLauncher : MonoBehaviour {
             }
         }
         return closestPlayer;
+    }
+
+    void OnTriggerEnter(Collider otherObject)
+    {
+        if (otherObject.tag == "Player 1")
+        {
+            otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
+            Destroy(this.gameObject);
+        }
+        else if (otherObject.tag == "Player 2")
+        {
+            otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
+            Destroy(this.gameObject);
+        }
     }
 }

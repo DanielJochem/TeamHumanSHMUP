@@ -57,7 +57,7 @@ public class SpawnSpaceStuff : MonoBehaviour
     public void Spawn() {
         int prefeb_num = Random.Range(0, 12);
         float randRotation = Random.Range(-360.0f, 360.0f);
-        randFallSpeed = Random.Range(fallSpeedMin, fallSpeedMax);
+        randFallSpeed = Random.Range(fallSpeedMin, fallSpeedMax) * 1.2f;
 
         fall.x = spawner.position.x;
         fall.z = spawner.position.z;

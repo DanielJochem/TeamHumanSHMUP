@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerManagement : MonoBehaviour {
 
     //Player starting positions
-    public Vector3 playerOnePosition = new Vector3(0, 0, 0);
+    public Vector3 playerOnePosition = new Vector3(0, 40, 0);
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
 
     //The CharacterController on both players
@@ -14,7 +14,9 @@ public class PlayerManagement : MonoBehaviour {
     public gameManager GameManager;
     public Quaternion rotate;
     
-    public float health = 100.0f;
+    //Health and lives
+    public int health = 100;
+    public int lives = 3;
 
     //Weapons fire from here
     public GameObject muzzle;
@@ -89,8 +91,17 @@ public class PlayerManagement : MonoBehaviour {
             tiltX = axis * 20f;
         }*/
 
-        playerOne.Move(playerOnePosition * Time.deltaTime);
-        playerTwo.Move(playerTwoPosition * Time.deltaTime);
+        //if players are alive
+        if (playerOne != null)
+        {
+            playerOne.Move(playerOnePosition * Time.deltaTime);
+            GameManager.timeSurvivedP1 = Time.time;
+        }
+
+        if (playerTwo != null) {
+            playerTwo.Move(playerTwoPosition * Time.deltaTime);
+            GameManager.timeSurvivedP2 = Time.time;
+        }
 
         fireMachineGun();
         fireRocketLauncher();
@@ -99,12 +110,14 @@ public class PlayerManagement : MonoBehaviour {
         //Kill Check
         if (health <= 0) {
             if (this.gameObject.tag == "Player 1") {
+                GameManager.p1LivesRemaining--;
                 if (GameManager.p1LivesRemaining > 0) {
-                    print(this.gameObject.tag + " lost a life");
-                    this.transform.position = playerOnePosition;
-                    GameManager.p1LivesRemaining--;
+                    health = 100;
+                    this.transform.position = new Vector3(4.63f, 1.585f, -10.7f);
+
+                    GameManager.p1HealthRemaining = 100;
                 } else {
-                    print(this.gameObject.tag + " died");
+                    GameManager.playerOneDead = true;
                     Destroy(this.gameObject);
                     //For later use
                     //Instantiate(deathExplosion, transform.position, transform.rotation);
@@ -112,28 +125,30 @@ public class PlayerManagement : MonoBehaviour {
             }
 
             if (this.gameObject.tag == "Player 2") {
-                if (GameManager.p1LivesRemaining > 0) {
-                    print(this.gameObject.tag + " lost a life");
-                    this.transform.position = playerOnePosition;
-                    GameManager.p2LivesRemaining--;
+                GameManager.p2LivesRemaining--;
+                if (GameManager.p2LivesRemaining > 0) {
+                    health = 100;
+                    this.transform.position = new Vector3(18.63f, 1.585f, -10.7f);
+                    GameManager.p2HealthRemaining = 100;
                 }  else {
-                    print(this.gameObject.tag + " died");
+                    GameManager.playerTwoDead = true;
                     Destroy(this.gameObject);
                     //For later use
                     //Instantiate(deathExplosion, transform.position, transform.rotation);
                 }
             }
         }
-
-        //Add to final score??
-        GameManager.timeSurvivedP1 = Time.time;
-        GameManager.timeSurvivedP2 = Time.time;
     }
 
-    public void takeDamage(float damage)
+    public void takeDamage(int damage)
     {
         health -= damage;
-        print("" + name + " taking damage");
+        if(this.gameObject.tag == "Player 1")
+        {
+            GameManager.p1HealthRemaining = health;
+        } else {
+            GameManager.p2HealthRemaining = health;
+        }
     }
 
     /*void JoystickMovement()

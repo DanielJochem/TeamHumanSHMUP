@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
-    public int innerClip = 30;
-
+    public UIGameOver gameOver;
     public GameObject[] enemyUnitList;
     public List<GameObject> players = new List<GameObject>();
 
@@ -26,6 +25,14 @@ public class gameManager : MonoBehaviour
     public int p1LivesRemaining;
     public int p2LivesRemaining;
 
+    //Player Health UI
+    public Text p1Health;
+    public Text p2Health;
+    public int p1HealthRemaining;
+    public int p2HealthRemaining;
+    public bool playerOneDead = false;
+    public bool playerTwoDead = false;
+
     void Awake()
     {
         p1LivesRemaining = 3;
@@ -33,6 +40,9 @@ public class gameManager : MonoBehaviour
 
         players.Add(GameObject.FindGameObjectWithTag("Player 1"));
         players.Add(GameObject.FindGameObjectWithTag("Player 2"));
+
+        p1HealthRemaining = 100;
+        p2HealthRemaining = 100;
     }
 
     // Update is called once per frame
@@ -41,12 +51,21 @@ public class gameManager : MonoBehaviour
         enemyUnitList = GameObject.FindGameObjectsWithTag("Enemy");
 
         //Enemies Killed
-        p1ScoreText.text = "P1 Score: " + p1Score;
-        p2ScoreText.text = "P2 Score: " + p2Score;
+        p1ScoreText.text = "Score: " + p1Score;
+        p2ScoreText.text = "Score: " + p2Score;
 
         //Player Lives
-        p1Lives.text = "P1 Lives: " + p1LivesRemaining;
-        p2Lives.text = "P2 Lives: " + p2LivesRemaining;
+        p1Lives.text = "Lives: " + p1LivesRemaining;
+        p2Lives.text = "Lives: " + p2LivesRemaining;
+
+        //Player Health
+        p1Health.text = "Health: " + p1HealthRemaining;
+        p2Health.text = "Health: " + p2HealthRemaining;
+
+        if (playerOneDead == true && playerTwoDead == true)
+        {
+            gameOver.restart.SetActive(true);
+        }
     }
 
     public void ClickMe()

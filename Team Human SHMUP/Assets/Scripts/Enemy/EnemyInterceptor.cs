@@ -62,22 +62,10 @@ public class EnemyInterceptor : Enemies {
         }
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        Debug.Log("Entered");
-        if (collider.gameObject.tag == "P1Fired")
-        {
-            Debug.Log("P1");
-            GameManager.p1Score += points;
-            Debug.Log("Destroy");
-            Destroy(this.gameObject);
-        }
-        else if (collider.gameObject.tag == "P2Fired")
-        {
-            Debug.Log("P2");
-            GameManager.p2Score += points;
-            Debug.Log("Destroy");
-            Destroy(this.gameObject);
+    void OnTriggerEnter(Collider collider) {
+        whoHitMeLast = collider.gameObject.tag;
+        if(collider.gameObject.tag == "P1Fired" || collider.gameObject.tag == "P2Fired")  {
+            Destroy(collider.gameObject);
         }
     }
 

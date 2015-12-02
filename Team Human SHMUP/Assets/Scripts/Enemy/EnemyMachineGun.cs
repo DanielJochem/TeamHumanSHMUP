@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMachineGun : MonoBehaviour {
-
-    public float projectileSpeed;
-    public float projectileLifeTime;
-    public float projectileLifeTimeDuration;
-    public float projectileDamage;
+public class EnemyMachineGun : Enemies {
 
     void Start() {
         projectileSpeed = 80.0f;
         projectileLifeTime = 0.0f;
         projectileLifeTimeDuration = 0.5f;
-        projectileDamage = 5.0f;
+        projectileDamage = 5;
 
         projectileLifeTime = Time.time + projectileLifeTimeDuration;
     }
