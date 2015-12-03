@@ -27,47 +27,47 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void SpaceBGMusicSound()
     {
-        PlaySound(audioSource, SpaceBGMusic, 0.00001f);
+        PlaySound(audioSource, SpaceBGMusic, 0.1f);
     }
 
     public void BossDeathSound()
     {
-        PlaySound(audioSource, BossDeathAudio, 0.2f);
+        PlaySound(audioSource, BossDeathAudio, 0.2f); //
     }
 
     public void BossEnterSound()
     {
-        PlaySound(audioSource, BossEnterAudio, 0.25f);
+        PlaySound(audioSource, BossEnterAudio, 0.25f); //
     }
 
     public void ClickButtonSound()
     {
-        PlaySound(audioSource, ClickButtonAudio, 1500.00f);
+        PlaySound(audioSource, ClickButtonAudio, 5.0f);
     }
 
     public void ExplosionAudioSound()
     {
-        PlaySound(audioSource, ExplosionAudio, 10.00f);
+        PlaySound(audioSource, ExplosionAudio, 3.0f);
     }
 
     public void HitAudioSound()
     {
-        PlaySound(audioSource, HitAudio, 5.0f);
+        PlaySound(audioSource, HitAudio, 3.0f);
     }
 
     public void LazerFireAudioSound()
     {
-        PlaySound(audioSource, LazerFireAudio, 0.5f);
+        PlaySound(audioSource, LazerFireAudio, 0.25f);
     }
 
     public void LevelCompleteAudioSound()
     {
-        PlaySound(audioSource, LevelCompleteAudio, 0.25f);
+        PlaySound(audioSource, LevelCompleteAudio, 0.25f); //
     }
 
     public void PickUpAudioSound()
     {
-        PlaySound(audioSource, PickUpAudio, 0.4f);
+        PlaySound(audioSource, PickUpAudio, 0.4f); //
     }
 
     public void RocketFireAudioSound()
@@ -77,7 +77,7 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void ShipEngineAudioSound()
     {
-        PlaySound(audioSource, ShipEngineAudio, 1500.00f);
+        PlaySound(audioSource, ShipEngineAudio, 0.1f);
     }
 }
 

@@ -17,7 +17,6 @@ public class EnemyDrone : Enemies {
         health = 20.0f;
         moveSpeed = 3.0f;
         points = 10;
-        addPlayers();
     }
 
     void Update() {

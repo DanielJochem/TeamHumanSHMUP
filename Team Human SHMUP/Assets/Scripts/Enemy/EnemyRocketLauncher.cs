@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class EnemyRocketLauncher : Enemies {
 
-    gameManager GameManager;
-
-    private GameObject closestPlayer;
-    public float rotationSpeed = 10.0f;
+    private GameObject closest;
+    public List<GameObject> players = new List<GameObject>();
+    public float rotation = 10.0f;
 
     // Use this for initialization
     void Start()
     {
-        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+        players.Add(GameObject.FindGameObjectWithTag("Player 1"));
+        players.Add(GameObject.FindGameObjectWithTag("Player 2"));
 
         projectileSpeed = 10.0f;
         projectileLifeTime = 0.0f;
@@ -28,16 +28,16 @@ public class EnemyRocketLauncher : Enemies {
         //Projectile Movement
         transform.position += Time.deltaTime * projectileSpeed * transform.forward;
 
-        closestPlayer = FindClosestPlayer();
+        closest = FindClosest();
 
-        if (closestPlayer != null)
+        if (closest != null)
         {
             //Smooth Lock
             //Determine the target rotation. This is the rotation if the transform looks at the target point
-            Quaternion targetRotation = Quaternion.LookRotation(closestPlayer.transform.position - transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(closest.transform.position - transform.position);
 
             //Smoothly rotate towards the target point.
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotation * Time.deltaTime);
         }
 
         //Kill projectile after time
@@ -49,23 +49,23 @@ public class EnemyRocketLauncher : Enemies {
 
     //Algorithm controlling the detection of closest enemy target using global enemy list
     //Return the closest enemy in enemyList
-    GameObject FindClosestPlayer()
+    GameObject FindClosest()
     {
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
 
-        foreach (GameObject player in GameManager.players)
+        foreach (GameObject player in players)
         {
             Vector3 diff = player.transform.position - position;
             float curDistance = diff.sqrMagnitude;
 
             if (curDistance < distance)
             {
-                closestPlayer = player;
+                closest = player;
                 distance = curDistance;
             }
         }
-        return closestPlayer;
+        return closest;
     }
 
     void OnTriggerEnter(Collider otherObject)

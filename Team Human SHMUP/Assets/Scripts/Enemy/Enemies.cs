@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Enemies : MonoBehaviour {
-    
-    public gameManager GameManager;
 
     public string name = "";
     public float health;
@@ -12,7 +10,6 @@ public class Enemies : MonoBehaviour {
     public int points;
 
     public GameObject closestPlayer;
-    public List<GameObject> players = new List<GameObject>();
     public string whoHitMeLast = "";
 
     //Rotation Vars
@@ -25,11 +22,16 @@ public class Enemies : MonoBehaviour {
     protected float projectileLifeTimeDuration;
     protected int projectileDamage;
 
+    //Players
+    public GameObject player1; 
+    public GameObject player2;
+
     //For later use
     //public GameObject deathExplosion;
 
     void Start() {
-        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
+        player1 = GameObject.FindGameObjectWithTag("Player 1");
+        player2 = GameObject.FindGameObjectWithTag("Player 2");
     }
 
     // Update is called once per frame
@@ -43,28 +45,22 @@ public class Enemies : MonoBehaviour {
         }
     }
 
-    public void addPlayers()
-    {
-        players.Add(GameObject.FindGameObjectWithTag("Player 1"));
-        players.Add(GameObject.FindGameObjectWithTag("Player 2"));
-    }
-
-    public void FindClosestPlayer()
-    {
-        for (int index = 0; index < players.Count; index++)
-        {
-            if (players[index] != null)
-            {
-                if (index == 0)
-                {
-                    closestPlayer = players[0];
-                }
-
-                if (Vector3.Distance(transform.position, players[index].transform.position) <= Vector3.Distance(transform.position, closestPlayer.transform.position))
-                {
-                    closestPlayer = players[index];
-                }
+    public void FindClosestPlayer() {
+        if (player1 != null && player2 != null) {
+            if (Vector3.Distance(transform.position, player1.transform.position) <= Vector3.Distance(transform.position, player2.transform.position)) {
+                closestPlayer = player1;
+            } else {
+                closestPlayer = player2;
             }
+
+        } else if (player1 != null && player2 == null) {
+            closestPlayer = player1;
+
+        } else if (player1 == null && player2 != null) {
+            closestPlayer = player2;
+
+        } else {
+            closestPlayer = null;
         }
     }
 
@@ -87,9 +83,9 @@ public class Enemies : MonoBehaviour {
         if(health <= 0) {
             AudioManager.Instance.ExplosionAudioSound();
             if (whoHitMeLast == "P1Fired") {
-                GameManager.p1Score += points;
+                gameManager.Instance.p1Score += points;
             } else {
-                GameManager.p2Score += points;
+                gameManager.Instance.p2Score += points;
             }
             
             Destroy(this.gameObject);

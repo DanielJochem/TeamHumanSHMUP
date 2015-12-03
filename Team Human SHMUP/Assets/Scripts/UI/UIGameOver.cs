@@ -4,15 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class UIGameOver : MonoBehaviour {
-
-    gameManager GameManager;
-
     public GameObject restart;
+    public PlayerManagement playerManagement;
     public List<Text> gameOverMessages = new List<Text>();
 
     void Awake() {
-
-        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
 
         restart = this.gameObject;
 
@@ -28,14 +24,17 @@ public class UIGameOver : MonoBehaviour {
     }
 
     public void OnClick_RestartGame() {
-        GameManager.ClickMe();
+        gameManager.Instance.ClickMe();
 
         Application.LoadLevel(Application.loadedLevel);
-        restart.SetActive(false);
+        gameManager.Instance.timeSurvivedP1 = 0;
+        gameManager.Instance.timeSurvivedP2 = 0;
+    restart.SetActive(false);
     }
 
     public void OnClick_QuitGame()
     {
+        gameManager.Instance.ClickMe();
         Application.Quit();
     }
 }

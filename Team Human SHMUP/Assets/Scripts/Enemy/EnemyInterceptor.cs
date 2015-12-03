@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class EnemyInterceptor : Enemies {
 
     Vector3 direction = Vector3.left;
-    Vector3 moveForward;
+    Vector3 prevDirection = Vector3.left;
+    public bool down = false;
+    public int goneDown;
     public Quaternion rotate;
 
     //Shotgun Weapon
@@ -21,26 +23,38 @@ public class EnemyInterceptor : Enemies {
         health = 100.0f;
         moveSpeed = 20.0f;
         points = 45;
-        addPlayers();
-
-        moveForward = transform.position;
     }
 
-    void FixedUpdate()
-    {
-        Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
-        newPosition = transform.position + newPosition;
-        newPosition.x = Mathf.Clamp(newPosition.x, -27.5f, 50.5f);
-        transform.position = newPosition;
-        if (newPosition.x >= 50.5f)
-        {
-            moveForward.z = transform.position.z + 5;
-            direction = Vector3.left;
-        }
-        else if (newPosition.x <= -27.5f)
-        {
-            moveForward.z = transform.position.z + 5;
-            direction = Vector3.right;
+    void FixedUpdate() {
+        if (!down) {
+            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
+            newPosition = transform.position + newPosition;
+            newPosition.x = Mathf.Clamp(newPosition.x, -27.5f, 50.5f);
+
+            if (newPosition.x >= 50.5f)
+            {
+                down = true;
+                prevDirection = Vector3.left;
+            }
+            else if (newPosition.x <= -27.5f)
+            {
+                down = true;
+                prevDirection = Vector3.right;
+            }
+            transform.position = newPosition;
+        } else {
+            direction = Vector3.back;
+            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
+            newPosition = transform.position + newPosition;
+            transform.position = newPosition;
+            goneDown += 1;
+
+            if(goneDown == 10)
+            {
+                down = false;
+                direction = prevDirection;
+                goneDown = 0;
+            }
         }
 
         fireShotgun();

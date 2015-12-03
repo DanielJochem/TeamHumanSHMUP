@@ -3,14 +3,11 @@ using System.Collections;
 
 public class PlayerRocketLauncher : Weapons {
 
-	gameManager GameManager;
-
     private GameObject closestEnemyUnit;
     public float rotationSpeed = 10.0f;
     
     // Use this for initialization
     void Start () {
-		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
 
         projectileSpeed = 10.0f;
         lifeTime = 0;
@@ -43,7 +40,7 @@ public class PlayerRocketLauncher : Weapons {
 		float distance = Mathf.Infinity;
 		Vector3 position = transform.position;
 		
-		foreach(GameObject enemyUnit in GameManager.enemyUnitList) {
+		foreach(GameObject enemyUnit in gameManager.Instance.enemyUnitList) {
 			Vector3 diff = enemyUnit.transform.position - position;
 			float curDistance = diff.sqrMagnitude;
 			

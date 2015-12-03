@@ -17,7 +17,6 @@ public class EnemyBoosterBot : Enemies {
         health = 100.0f;
         moveSpeed = 3.0f;
         points = 100;
-        addPlayers();
     }
 
     void Update() {

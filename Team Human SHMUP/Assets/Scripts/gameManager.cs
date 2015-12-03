@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+public class gameManager : SingletonBehaviour<gameManager>
 {
     public UIGameOver gameOver;
+
     public GameObject[] enemyUnitList;
     public List<GameObject> players = new List<GameObject>();
 
@@ -33,7 +34,11 @@ public class gameManager : MonoBehaviour
     public bool playerOneDead = false;
     public bool playerTwoDead = false;
 
-    void Awake()
+    //Only display final score on player that died until both players are dead
+    public Text p1FinalScore;
+    public Text p2FinalScore;
+
+    void Start()
     {
         p1LivesRemaining = 3;
         p2LivesRemaining = 3;
@@ -61,6 +66,25 @@ public class gameManager : MonoBehaviour
         //Player Health
         p1Health.text = "Health: " + p1HealthRemaining;
         p2Health.text = "Health: " + p2HealthRemaining;
+
+        //Player Final Score
+        p1FinalScore.text = "Final Score: " + (p1Score + (Mathf.Floor(timeSurvivedP1)));
+        p2FinalScore.text = "Final Score: " + (p2Score + (Mathf.Floor(timeSurvivedP2)));
+
+        if (playerOneDead == true)
+        {
+            p1ScoreText.gameObject.SetActive(false);
+            p1Lives.gameObject.SetActive(false);
+            p1Health.gameObject.SetActive(false);
+            p1FinalScore.gameObject.SetActive(true);
+        }
+
+        if (playerTwoDead == true) {
+            p2ScoreText.gameObject.SetActive(false);
+            p2Lives.gameObject.SetActive(false);
+            p2Health.gameObject.SetActive(false);
+            p2FinalScore.gameObject.SetActive(true);
+        }
 
         if (playerOneDead == true && playerTwoDead == true)
         {

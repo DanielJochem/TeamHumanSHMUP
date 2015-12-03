@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class UIStartGame : MonoBehaviour {
 
-    gameManager GameManager;
-
     public UIDisplay score;
 
     public GameObject[] findEnemies;
@@ -16,9 +14,6 @@ public class UIStartGame : MonoBehaviour {
     public GameObject spaceSpawners;
 
     void Awake() {
-
-        GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
-
         //Find all enemies on screen and deactivate them
         findEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemies in findEnemies) {
@@ -37,7 +32,7 @@ public class UIStartGame : MonoBehaviour {
 
     public void OnClick_StartGame() {
 
-        GameManager.ClickMe();
+        gameManager.Instance.ClickMe();
 
         //Activate players
         playerOne.gameObject.SetActive(true);
@@ -63,6 +58,7 @@ public class UIStartGame : MonoBehaviour {
     }
 
     public void OnClick_QuitGame() {
+        gameManager.Instance.ClickMe();
         Application.Quit();
     }
 }

@@ -11,7 +11,6 @@ public class PlayerManagement : MonoBehaviour {
     public CharacterController playerOne;
     public CharacterController playerTwo;
 
-    public gameManager GameManager;
     public Quaternion rotate;
     
     //Health and lives
@@ -40,14 +39,14 @@ public class PlayerManagement : MonoBehaviour {
     public float joySpeed = 100.0f;
 
     void Start() {
-       GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
-       rotate = muzzle.transform.rotation;
+        rotate = muzzle.transform.rotation;
+        rotate.z += 180;
 
-       playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
-       playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
+        playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
+        playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
     }
 
-    void Update() {
+    void FixedUpdate() {
         //Keyboard used
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
             playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical")).normalized;
@@ -95,12 +94,12 @@ public class PlayerManagement : MonoBehaviour {
         if (playerOne != null)
         {
             playerOne.Move(playerOnePosition * Time.deltaTime);
-            GameManager.timeSurvivedP1 = Time.time;
+            gameManager.Instance.timeSurvivedP1 = Time.time;
         }
 
         if (playerTwo != null) {
             playerTwo.Move(playerTwoPosition * Time.deltaTime);
-            GameManager.timeSurvivedP2 = Time.time;
+            gameManager.Instance.timeSurvivedP2 = Time.time;
         }
 
         fireMachineGun();
@@ -110,14 +109,14 @@ public class PlayerManagement : MonoBehaviour {
         //Kill Check
         if (health <= 0) {
             if (this.gameObject.tag == "Player 1") {
-                GameManager.p1LivesRemaining--;
-                if (GameManager.p1LivesRemaining > 0) {
+                gameManager.Instance.p1LivesRemaining--; //
+                if (gameManager.Instance.p1LivesRemaining > 0) {
                     health = 100;
                     this.transform.position = new Vector3(4.63f, 1.585f, -10.7f);
 
-                    GameManager.p1HealthRemaining = 100;
+                    gameManager.Instance.p1HealthRemaining = 100;
                 } else {
-                    GameManager.playerOneDead = true;
+                    gameManager.Instance.playerOneDead = true;
                     Destroy(this.gameObject);
                     //For later use
                     //Instantiate(deathExplosion, transform.position, transform.rotation);
@@ -125,13 +124,13 @@ public class PlayerManagement : MonoBehaviour {
             }
 
             if (this.gameObject.tag == "Player 2") {
-                GameManager.p2LivesRemaining--;
-                if (GameManager.p2LivesRemaining > 0) {
+                gameManager.Instance.p2LivesRemaining--;
+                if (gameManager.Instance.p2LivesRemaining > 0) {
                     health = 100;
                     this.transform.position = new Vector3(18.63f, 1.585f, -10.7f);
-                    GameManager.p2HealthRemaining = 100;
+                    gameManager.Instance.p2HealthRemaining = 100;
                 }  else {
-                    GameManager.playerTwoDead = true;
+                    gameManager.Instance.playerTwoDead = true;
                     Destroy(this.gameObject);
                     //For later use
                     //Instantiate(deathExplosion, transform.position, transform.rotation);
@@ -145,9 +144,9 @@ public class PlayerManagement : MonoBehaviour {
         health -= damage;
         if(this.gameObject.tag == "Player 1")
         {
-            GameManager.p1HealthRemaining = health;
+            gameManager.Instance.p1HealthRemaining = health; //
         } else {
-            GameManager.p2HealthRemaining = health;
+            gameManager.Instance.p2HealthRemaining = health;
         }
     }
 
@@ -176,7 +175,7 @@ public class PlayerManagement : MonoBehaviour {
     void fireMachineGun() {
         if (Input.GetMouseButton(0) && Time.time > machineGunFireTime) {
             AudioManager.Instance.LazerFireAudioSound();
-            Instantiate(machineGun, muzzle.transform.position, muzzle.transform.rotation);
+            Instantiate(machineGun, muzzle.transform.position, rotate);
             machineGunFireTime = Time.time + machineGunFireRate;
         }
     }
@@ -184,7 +183,7 @@ public class PlayerManagement : MonoBehaviour {
     void fireRocketLauncher() {
         if (Input.GetMouseButton(1) && !Input.GetMouseButton(0) && Time.time > rocketLauncherFireTime) {
             AudioManager.Instance.RocketFireAudioSound();
-            Instantiate(rocketLauncher, muzzle.transform.position, muzzle.transform.rotation);
+            Instantiate(rocketLauncher, muzzle.transform.position, rotate);
             rocketLauncherFireTime = Time.time + rocketLauncherFireRate;
         }
     }

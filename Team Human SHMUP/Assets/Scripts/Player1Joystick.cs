@@ -11,13 +11,10 @@ public class Player1Joystick : MonoBehaviour {
 	
 	//The CharacterController on both players
 	public CharacterController playerOne;
-	
-	public gameManager GameManager;
 
 	// Use this for initialization
 	void Start () 
 	{
-		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
 		myTransform = this.transform;
 		
 		playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();

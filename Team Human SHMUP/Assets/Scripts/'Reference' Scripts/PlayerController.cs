@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     else
       this.tiltX = 0.0f;
     this.weaponBarrel.transform.rotation = Quaternion.Euler(this.myTransform.rotation.x, Mathf.Atan2(this.aimingX, this.aimingY) * 57.29578f, this.myTransform.rotation.z);
-    this.playerModel.transform.rotation = Quaternion.Euler(this.tiltZ, 0.0f, -this.tiltX);
+    this.playerModel.transform.rotation = Quaternion.Euler(this.tiltZ, 0.0f, -this.tiltX); //////
     this.aimingX = (double) Input.GetAxis("P1_Mouse X") == 0.0 ? 0.0f : -Input.GetAxis("P1_Mouse X");
     this.aimingY = (double) Input.GetAxis("P1_Mouse Y") == 0.0 ? 0.0f : -Input.GetAxis("P1_Mouse Y");
     if ((double) Input.GetAxis("P1_Fire1") != 0.0 && (double) Time.time > (double) this.lazorFireTime)

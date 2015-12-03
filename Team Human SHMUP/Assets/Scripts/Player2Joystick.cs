@@ -13,17 +13,14 @@ public class Player2Joystick : MonoBehaviour {
 	public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
 	
 	//The CharacterController on both players
-	public CharacterController playerOne;
-	
-	public gameManager GameManager;
+	public CharacterController playerTwo;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<gameManager>();
 		myTransform = this.transform;
 		
-		playerOne = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
+		playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
 	}
 	
 	// Update is called once per frame
