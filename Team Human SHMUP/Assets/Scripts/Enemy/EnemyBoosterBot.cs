@@ -4,7 +4,13 @@ using System.Collections.Generic;
 
 public class EnemyBoosterBot : Enemies {
 
-    //Missile Weapon
+    Vector3 direction = Vector3.left;
+    Vector3 prevDirection = Vector3.left;
+    
+    public bool down = false;
+    public int goneDown;
+
+    //Rocket Launcher Weapon
     public GameObject rocketLauncher;
     private float rocketLauncherFireTime;
     private float rocketLauncherFireRate = 5.0f;
@@ -15,14 +21,45 @@ public class EnemyBoosterBot : Enemies {
     void Start() {
         name = "Booster Bot";
         health = 100.0f;
-        moveSpeed = 3.0f;
+        moveSpeed = 15.0f;
         points = 100;
     }
 
-    void Update() {
-        FollowPlayer();
+    void FixedUpdate() {
+        if (!down)
+        {
+            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
+            newPosition = transform.position + newPosition;
+            newPosition.x = Mathf.Clamp(newPosition.x, -27.5f, 50.5f);
+
+            if (newPosition.x >= 50.5f)
+            {
+                down = true;
+                prevDirection = Vector3.left;
+            }
+            else if (newPosition.x <= -27.5f)
+            {
+                down = true;
+                prevDirection = Vector3.right;
+            }
+            transform.position = newPosition;
+        }
+        else
+        {
+            direction = Vector3.back;
+            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
+            newPosition = transform.position + newPosition;
+            transform.position = newPosition;
+            goneDown += 1;
+
+            if (goneDown == 10)
+            {
+                down = false;
+                direction = prevDirection;
+                goneDown = 0;
+            }
+        }
         fireRocketLauncher();
-        transform.position += Time.deltaTime * moveSpeed * transform.forward;
     }
 
     void fireRocketLauncher()

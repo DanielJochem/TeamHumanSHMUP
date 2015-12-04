@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyInterceptor : Enemies {
-
-    Vector3 direction = Vector3.left;
-    Vector3 prevDirection = Vector3.left;
-    public bool down = false;
-    public int goneDown;
+    
     public Quaternion rotate;
 
     //Shotgun Weapon
@@ -21,44 +17,17 @@ public class EnemyInterceptor : Enemies {
     void Start() {
         name = "Interceptor";
         health = 100.0f;
-        moveSpeed = 20.0f;
+        moveSpeed = 3.0f;
         points = 45;
     }
 
-    void FixedUpdate() {
-        if (!down) {
-            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
-            newPosition = transform.position + newPosition;
-            newPosition.x = Mathf.Clamp(newPosition.x, -27.5f, 50.5f);
-
-            if (newPosition.x >= 50.5f)
-            {
-                down = true;
-                prevDirection = Vector3.left;
-            }
-            else if (newPosition.x <= -27.5f)
-            {
-                down = true;
-                prevDirection = Vector3.right;
-            }
-            transform.position = newPosition;
-        } else {
-            direction = Vector3.back;
-            Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
-            newPosition = transform.position + newPosition;
-            transform.position = newPosition;
-            goneDown += 1;
-
-            if(goneDown == 10)
-            {
-                down = false;
-                direction = prevDirection;
-                goneDown = 0;
-            }
-        }
-
+    void Update()
+    {
+        FollowPlayer();
         fireShotgun();
+        transform.position += Time.deltaTime * moveSpeed * transform.forward;
     }
+
 
     void fireShotgun()
     {

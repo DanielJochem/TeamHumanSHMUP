@@ -75,6 +75,9 @@ public class UIStartGame : MonoBehaviour {
             {
                 enemies.gameObject.SetActive(true);
             }
+
+            gameManager.Instance.prevTimeP1 = (int)Time.time;
+            gameManager.Instance.prevTimeP2 = (int)Time.time;
         }
     }
 

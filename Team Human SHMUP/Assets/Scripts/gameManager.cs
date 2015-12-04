@@ -13,6 +13,8 @@ public class gameManager : SingletonBehaviour<gameManager>
     //For adding to score later on
     public float timeSurvivedP1;
     public float timeSurvivedP2;
+    public int prevTimeP1;
+    public int prevTimeP2;
 
     //Enemies Killed UI
     public Text p1ScoreText;
@@ -68,8 +70,8 @@ public class gameManager : SingletonBehaviour<gameManager>
         p2Health.text = "Health: " + p2HealthRemaining;
 
         //Player Final Score
-        p1FinalScore.text = "Final Score: " + (p1Score + (Mathf.Floor(timeSurvivedP1)));
-        p2FinalScore.text = "Final Score: " + (p2Score + (Mathf.Floor(timeSurvivedP2)));
+        p1FinalScore.text = "Final Score: " + ((p1Score + (Mathf.Floor(timeSurvivedP1))) - prevTimeP1);
+        p2FinalScore.text = "Final Score: " + ((p2Score + (Mathf.Floor(timeSurvivedP2))) - prevTimeP2);
 
         if (playerOneDead == true)
         {

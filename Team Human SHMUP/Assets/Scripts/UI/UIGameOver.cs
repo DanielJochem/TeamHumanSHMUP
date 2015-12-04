@@ -27,9 +27,7 @@ public class UIGameOver : MonoBehaviour {
         gameManager.Instance.ClickMe();
 
         Application.LoadLevel(Application.loadedLevel);
-        gameManager.Instance.timeSurvivedP1 = 0;
-        gameManager.Instance.timeSurvivedP2 = 0;
-    restart.SetActive(false);
+        restart.SetActive(false);
     }
 
     public void OnClick_QuitGame()

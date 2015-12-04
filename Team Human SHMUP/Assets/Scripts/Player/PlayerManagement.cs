@@ -10,13 +10,11 @@ public class PlayerManagement : MonoBehaviour {
     //Health and lives
     public int health = 100;
     public int lives = 3;
+    public float speed = 8.0f;
 
     //Player starting positions
     public Vector3 playerOnePosition = new Vector3(0, 40, 0);
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
-
-    public Quaternion p1Rotate;
-	public Quaternion p2Rotate;
     
     //Weapons fire from here
     public GameObject p1Muzzle;
@@ -44,65 +42,97 @@ public class PlayerManagement : MonoBehaviour {
 	private float p2ShotgunFireTime;
     private float shotgunFireRate = 2.0f;
 
-    public float keySpeed = 8.0f;
+    //For later model tilting
+    public float smooth = 2.0f;
+    public float tiltAngle = 5.0f;
 
     void Start() {
-        p1Rotate = p1Muzzle.transform.rotation;
-        p1Rotate.z += 180;
-		p2Rotate = p2Muzzle.transform.rotation;
-		p2Rotate.z += 180;
-
         playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
         playerTwo = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterController>();
     }
 
     void FixedUpdate() {
         //Keyboard used
+        //Player 1
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")) {
             playerOnePosition = new Vector3(Input.GetAxis("P1_Horizontal"), 0, Input.GetAxis("P1_Vertical")).normalized;
             playerOnePosition = transform.TransformDirection(playerOnePosition);
-            playerOnePosition *= keySpeed;
+            playerOnePosition *= speed;
+
+            float tiltAroundZP1 = -Input.GetAxis("P1_Horizontal") * tiltAngle;
+            float tiltAroundXP1 = Input.GetAxis("P1_Vertical") * tiltAngle;
+            Quaternion target = Quaternion.Euler(tiltAroundXP1, 0, tiltAroundZP1);
+            if (this.gameObject.tag == "Player 1") {
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            }
         }
             
+        //Player 2
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)) {
             playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical")).normalized;
             playerTwoPosition = transform.TransformDirection(playerTwoPosition);
-            playerTwoPosition *= keySpeed;
+            playerTwoPosition *= speed;
+
+            float tiltAroundZP2 = -Input.GetAxis("P2_Horizontal") * tiltAngle;
+            float tiltAroundXP2 = Input.GetAxis("P2_Vertical") * tiltAngle;
+            Quaternion target = Quaternion.Euler(tiltAroundXP2, 0, tiltAroundZP2);
+            if(this.gameObject.tag == "Player 2") { 
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            }
         }
 
 		//Controllers used
+        //Player 1
 		if (Input.GetAxis("LeftJoystickVertical") != 0 || Input.GetAxis("LeftJoystickHorizontal") != 0) {
 			playerOnePosition = new Vector3(Input.GetAxis("LeftJoystickHorizontal"), 0, Input.GetAxis("LeftJoystickVertical")).normalized;
 			playerOnePosition = transform.TransformDirection(playerOnePosition);
-			playerOnePosition *= keySpeed;
-		}
+			playerOnePosition *= speed;
 
+            //Model rotation
+            if((Input.GetAxis("RightJoystickVertical") != 0 || Input.GetAxis("RightJoystickHorizontal") != 0) && gameObject.tag == "Player 1") //************************// && gameObject.tag == "Player 1")
+            {
+                transform.eulerAngles = new Vector3(0, Mathf.Atan2(Input.GetAxis("RightJoystickVertical"), -Input.GetAxis("RightJoystickHorizontal")) * 180 / Mathf.PI, 0);
+            } else if ((Input.GetAxis("RightJoystickVertical") == 0 || Input.GetAxis("RightJoystickHorizontal") == 0) && gameObject.tag == "Player 1") //*******************// && gameObject.tag == "Player 1")
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+
+            //Model tilting
+            float tiltAroundZP1 = -Input.GetAxis("LeftJoystickHorizontal") * (tiltAngle * 4);
+            float tiltAroundXP1 = Input.GetAxis("LeftJoystickVertical") * (tiltAngle * 4);
+            Quaternion target = Quaternion.Euler(tiltAroundXP1, 0, tiltAroundZP1);
+            if (this.gameObject.tag == "Player 1") {
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            }
+        }
+
+        //Player 2
 		if (Input.GetAxis ("LeftJoystickVertical2") != 0 || Input.GetAxis ("LeftJoystickHorizontal2") != 0) {
 			playerTwoPosition = new Vector3 (Input.GetAxis ("LeftJoystickHorizontal2"), 0, Input.GetAxis ("LeftJoystickVertical2")).normalized;
 			playerTwoPosition = transform.TransformDirection (playerTwoPosition);
-			playerTwoPosition *= keySpeed;
-		}
+			playerTwoPosition *= speed;
 
-        /*if (Input.GetAxis("LeftJoystickVertical") != 0)
-        {
-            float axis = Input.GetAxis("LeftJoystickVertical");
-            playerOnePosition.z += axis * joySpeed * Time.deltaTime;
-            tiltZ = axis * 20f;
+            //Model rotation
+            if ((Input.GetAxis("RightJoystickVertical2") != 0 || Input.GetAxis("RightJoystickHorizontal2") != 0) && gameObject.tag == "Player 2") //********************// && gameObject.tag == "Player 2")
+            {
+                transform.eulerAngles = new Vector3(0, Mathf.Atan2(Input.GetAxis("RightJoystickVertical2"), -Input.GetAxis("RightJoystickHorizontal2")) * 180 / Mathf.PI, 0);
+            }
+            else if ((Input.GetAxis("RightJoystickVertical2") == 0 || Input.GetAxis("RightJoystickHorizontal2") == 0) && gameObject.tag == "Player 2") //*****************// && gameObject.tag == "Player 2") 
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+
+            //Model tilting
+            float tiltAroundZP2 = -Input.GetAxis("LeftJoystickHorizontal2") * tiltAngle;
+            float tiltAroundXP2 = Input.GetAxis("LeftJoystickVertical2") * tiltAngle;
+            Quaternion target = Quaternion.Euler(0, tiltAroundXP2, tiltAroundZP2);
+            if (this.gameObject.tag == "Player 2") {
+                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            }
         }
-        else
-        {
-            tiltZ = 0.0f;
-        }
-        if (Input.GetAxis("LeftJoystickHorizontal") != 0)
-        {
-            float axis = Input.GetAxis("LeftJoystickHorizontal");
-            playerOnePosition.x += axis * this.joySpeed * Time.deltaTime;
-            tiltX = axis * 20f;
-        }*/
 
         //if players are alive
-        if (playerOne != null)
-        {
+        if (playerOne != null) {
             playerOne.Move(playerOnePosition * Time.deltaTime);
             gameManager.Instance.timeSurvivedP1 = Time.time;
         }
@@ -112,8 +142,9 @@ public class PlayerManagement : MonoBehaviour {
             gameManager.Instance.timeSurvivedP2 = Time.time;
         }
 
+        //This activates each player to shoot one set of weapons
 		if(this.gameObject.tag == "Player 1") {
-			P1SwtichWeapon();
+            P1SwtichWeapon();
             P1FireWeapons();
 		}
 
@@ -125,11 +156,10 @@ public class PlayerManagement : MonoBehaviour {
         //Kill Check
         if (health <= 0) {
             if (this.gameObject.tag == "Player 1") {
-                gameManager.Instance.p1LivesRemaining--; //
+                gameManager.Instance.p1LivesRemaining--;
                 if (gameManager.Instance.p1LivesRemaining > 0) {
                     health = 100;
                     this.transform.position = new Vector3(4.63f, 1.585f, -10.7f);
-
                     gameManager.Instance.p1HealthRemaining = 100;
                 } else {
                     gameManager.Instance.playerOneDead = true;
@@ -155,18 +185,16 @@ public class PlayerManagement : MonoBehaviour {
         }
     }
 
-    public void takeDamage(int damage)
-    {
+    public void takeDamage(int damage) {
         health -= damage;
-        if(this.gameObject.tag == "Player 1")
-        {
+        if(this.gameObject.tag == "Player 1") {
             gameManager.Instance.p1HealthRemaining = health;
         } else {
             gameManager.Instance.p2HealthRemaining = health;
         }
     }
 	
-
+    //Separated methods to switch player weapons
 	void P1SwtichWeapon() {
 		if (Input.GetButtonDown("SwapButton1")) {
 			if (p1WeaponSelected == 3) {
@@ -187,80 +215,76 @@ public class PlayerManagement : MonoBehaviour {
 		}
 	}
 
+    //Only Player 1 can fire these
     void P1FireWeapons() {
-        if (p1WeaponSelected == 1 || Input.GetMouseButton(0))
-        {
-            if ((Input.GetAxis("RightTriggerFire1") > 0 || Input.GetMouseButton(0)) && Time.time > p1MachineGunFireTime)
-            {
+        //Machine Gun
+        if (p1WeaponSelected == 1 || Input.GetMouseButton(0)) {
+            if ((Input.GetAxis("RightTriggerFire1") > 0 || Input.GetMouseButton(0)) && Time.time > p1MachineGunFireTime) {
                 AudioManager.Instance.LazerFireAudioSound();
-                Instantiate(machineGun, p1Muzzle.transform.position, p1Rotate);
+                Instantiate(machineGun, p1Muzzle.transform.position, p1Muzzle.transform.rotation);
                 p1MachineGunFireTime = Time.time + machineGunFireRate;
             }
         }
 
-        if (p1WeaponSelected == 2 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0))))
-        {
-            if ((Input.GetAxis("RightTriggerFire1") > 0 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) && Time.time > p1ShotgunFireTime)
-            {
+        //Shotgun
+        if (p1WeaponSelected == 2 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) {
+            if ((Input.GetAxis("RightTriggerFire1") > 0 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) && Time.time > p1ShotgunFireTime) {
                 AudioManager.Instance.RocketFireAudioSound();
-                Instantiate(shotgun, p1Muzzle.transform.position, p1Rotate);
-                p1Rotate.z += 20.0f;
-                p1Rotate.x += 0.1f;
-                Instantiate(shotgun, p1Muzzle.transform.position, p1Rotate);
-                p1Rotate.z -= 40.0f;
+                Quaternion p1RotateMe = p1Muzzle.transform.rotation;
+                Instantiate(shotgun, p1Muzzle.transform.position, p1RotateMe);
+                p1RotateMe = p1Muzzle.transform.rotation;
+                p1RotateMe.x += 0.1f;
+                Instantiate(shotgun, p1Muzzle.transform.position, p1RotateMe);
                 p1Rotate.x -= 0.2f;
-                Instantiate(shotgun, p1Muzzle.transform.position, p1Rotate);
+                Instantiate(shotgun, p1Muzzle.transform.position, p1RotateMe);
 
                 p1ShotgunFireTime = Time.time + shotgunFireRate;
             }
         }
 
-        if (p1WeaponSelected == 3 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0)))
-        {
-            if ((Input.GetAxis("RightTriggerFire1") > 0 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) && Time.time > p1RocketLauncherFireTime)
-            {
+        //Rocket Launcher
+        if (p1WeaponSelected == 3 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) {
+            if ((Input.GetAxis("RightTriggerFire1") > 0 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) && Time.time > p1RocketLauncherFireTime) {
                 AudioManager.Instance.RocketFireAudioSound();
-                Instantiate(rocketLauncher, p1Muzzle.transform.position, p1Rotate);
+                Instantiate(rocketLauncher, p1Muzzle.transform.position, p1Muzzle.transform.rotation);
                 p1RocketLauncherFireTime = Time.time + rocketLauncherFireRate;
             }
         }
     }
 
-    void P2FireWeapons()
-    {
-        if (p2WeaponSelected == 1 || Input.GetMouseButton(0))
-        {
-            if ((Input.GetAxis("RightTriggerFire2") > 0 || Input.GetMouseButton(0)) && Time.time > p2MachineGunFireTime)
-            {
+    //Only Player 2 can fire these
+    void P2FireWeapons() {
+        //Machine Gun
+        if (p2WeaponSelected == 1 || Input.GetMouseButton(0)) {
+            if ((Input.GetAxis("RightTriggerFire2") > 0 || Input.GetMouseButton(0)) && Time.time > p2MachineGunFireTime) {
                 AudioManager.Instance.LazerFireAudioSound();
-                Instantiate(machineGun, p2Muzzle.transform.position, p2Rotate);
+                Instantiate(machineGun, p2Muzzle.transform.position, p2Muzzle.transform.rotation);
                 p2MachineGunFireTime = Time.time + machineGunFireRate;
             }
         }
 
-        if (p2WeaponSelected == 2 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0))))
-        {
-            if ((Input.GetAxis("RightTriggerFire2") > 0 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) && Time.time > p2ShotgunFireTime)
-            {
+        //Shotgun
+        if (p2WeaponSelected == 2 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) {
+            if ((Input.GetAxis("RightTriggerFire2") > 0 || (Input.GetMouseButton(2) && (!Input.GetMouseButton(1) && !Input.GetMouseButton(0)))) && Time.time > p2ShotgunFireTime) {
                 AudioManager.Instance.RocketFireAudioSound();
-                Instantiate(shotgun, p2Muzzle.transform.position, p2Rotate);
-                p2Rotate.z += 20.0f;
-                p2Rotate.x += 0.1f;
-                Instantiate(shotgun, p2Muzzle.transform.position, p2Rotate);
-                p2Rotate.z -= 40.0f;
-                p2Rotate.x -= 0.2f;
-                Instantiate(shotgun, p2Muzzle.transform.position, p2Rotate);
+                Quaternion p2RotateMe = p2Muzzle.transform.rotation;
+                Instantiate(shotgun, p2Muzzle.transform.position, p2RotateMe);
+                p2RotateMe = p2Muzzle.transform.rotation;
+                p2RotateMe.x += 0.1f;
+                Instantiate(shotgun, p2Muzzle.transform.position, p2RotateMe);
+                p2RotateMe = p2Muzzle.transform.rotation;
+                p2RotateMe.x -= 0.2f;
+                Instantiate(shotgun, p2Muzzle.transform.position, p2RotateMe);
 
                 p2ShotgunFireTime = Time.time + shotgunFireRate;
             }
         }
 
-        if (p2WeaponSelected == 3 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0)))
-        {
-            if ((Input.GetAxis("RightTriggerFire2") > 0 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) && Time.time > p2RocketLauncherFireTime)
-            {
+        //Rocket Launcher
+        if (p2WeaponSelected == 3 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) {
+            if ((Input.GetAxis("RightTriggerFire2") > 0 || (Input.GetMouseButton(1) && !Input.GetMouseButton(0))) && Time.time > p2RocketLauncherFireTime) {
                 AudioManager.Instance.RocketFireAudioSound();
-                Instantiate(rocketLauncher, p2Muzzle.transform.position, p2Rotate);
+                Instantiate(rocketLauncher, p2Muzzle.transform.position, p2Muzzle.transform.rotation);
                 p2RocketLauncherFireTime = Time.time + rocketLauncherFireRate;
             }
         }

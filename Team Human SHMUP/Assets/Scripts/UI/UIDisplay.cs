@@ -18,7 +18,7 @@ public class UIDisplay : MonoBehaviour {
     public void ScoreOn()
     {
         display.SetActive(true);
-        //finalScoreP1.gameObject.SetActive(false);
-       // finalScoreP2.gameObject.SetActive(false);
+        finalScoreP1.gameObject.SetActive(false);
+        finalScoreP2.gameObject.SetActive(false);
     }
 }

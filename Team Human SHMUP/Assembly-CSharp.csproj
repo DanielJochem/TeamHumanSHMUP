@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{A36C4F15-725B-EB55-06B9-9A47AE8EC037}</ProjectGuid>
+	<ProjectGuid>{35A684B1-A75D-7662-8353-25A7765932B3}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -71,8 +71,6 @@
      <Compile Include="Assets\Scripts\Player\PlayerRocketLauncher.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShotgun.cs" />
      <Compile Include="Assets\Scripts\Player\Weapons.cs" />
-     <Compile Include="Assets\Scripts\Player1Joystick.cs" />
-     <Compile Include="Assets\Scripts\Player2Joystick.cs" />
      <Compile Include="Assets\Scripts\SingletonBehaviour.cs" />
      <Compile Include="Assets\Scripts\SpawnSpaceStuff.cs" />
      <Compile Include="Assets\Scripts\UI\UIDisplay.cs" />
@@ -106,13 +104,13 @@
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

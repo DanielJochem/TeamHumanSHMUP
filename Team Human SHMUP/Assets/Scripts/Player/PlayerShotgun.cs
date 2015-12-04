@@ -6,7 +6,7 @@ public class PlayerShotgun : Weapons {
     void Start() {
         projectileSpeed = 50.0f;
         lifeTime = 0;
-        lifeTimeDuration = 1.5f;
+        lifeTimeDuration = 1.0f;
         damage = 20.0f;
 
         lifeTime = Time.time + lifeTimeDuration;

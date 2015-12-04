@@ -9,9 +9,9 @@ public class PlayerRocketLauncher : Weapons {
     // Use this for initialization
     void Start () {
 
-        projectileSpeed = 10.0f;
+        projectileSpeed = 22.0f;
         lifeTime = 0;
-        lifeTimeDuration = 5.0f;
+        lifeTimeDuration = 3.0f;
         damage = 50.0f;
         
         lifeTime = Time.time + lifeTimeDuration;
@@ -32,7 +32,13 @@ public class PlayerRocketLauncher : Weapons {
 			//Smoothly rotate towards the target point.
 			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 		}
-	}
+
+        //Kill projectile after time
+        if (Time.time > lifeTime)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 	
 	//Algorithm controlling the detection of closest enemy target using global enemy list
 	//Return the closest enemy in enemyList

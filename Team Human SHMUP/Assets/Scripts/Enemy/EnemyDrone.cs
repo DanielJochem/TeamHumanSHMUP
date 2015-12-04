@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class EnemyDrone : Enemies {
 
+    Vector3 direction = Vector3.back;
+
     //Lazor Weapon
     public GameObject machineGun;
     private float machineGunFireTime;
@@ -15,14 +17,15 @@ public class EnemyDrone : Enemies {
     void Start() {
         name = "Drone";
         health = 20.0f;
-        moveSpeed = 3.0f;
+        moveSpeed = 5.0f;
         points = 10;
     }
 
     void Update() {
-        FollowPlayer();
+        Vector3 newPosition = direction * (moveSpeed * Time.deltaTime);
+        newPosition = transform.position + newPosition;
+        transform.position = newPosition;
         fireMachineGun();
-        transform.position += Time.deltaTime * moveSpeed * transform.forward;
     }
 
     void fireMachineGun()
