@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class UIStartGame : MonoBehaviour {
 
     public UIDisplay score;
+    public UIInstructions instructions;
 
     public GameObject[] findEnemies;
     public GameObject playerOne;
@@ -12,6 +14,13 @@ public class UIStartGame : MonoBehaviour {
     public GameObject closePlane;
     public GameObject farPlane;
     public GameObject spaceSpawners;
+
+    public Text p1NameText;
+    public Text p2NameText;
+    public string p1Name = "";
+    public string p2Name = "";
+    public Text p1NameDisplay;
+    public Text p2NameDisplay;
 
     void Awake() {
         //Find all enemies on screen and deactivate them
@@ -30,31 +39,49 @@ public class UIStartGame : MonoBehaviour {
         spaceSpawners.SetActive(false);
     }
 
+    void Update()
+    {
+        p1Name = p1NameText.text;
+        p2Name = p2NameText.text;
+    }
+
     public void OnClick_StartGame() {
+        if(p1Name != "" && p2Name != "")
+        {
+            gameManager.Instance.ClickMe();
 
-        gameManager.Instance.ClickMe();
+            p1NameDisplay.text = p1Name + ":";
+            p2NameDisplay.text = p2Name + ":";
 
-        //Activate players
-        playerOne.gameObject.SetActive(true);
-        playerTwo.gameObject.SetActive(true);
+            //Activate players
+            playerOne.gameObject.SetActive(true);
+            playerTwo.gameObject.SetActive(true);
 
-        //Reset background speed
-        closePlane.GetComponent<MovingBackground>().scrollSpeed = 5;
-        farPlane.GetComponent<MovingBackground>().scrollSpeed = 5;
+            //Reset background speed
+            closePlane.GetComponent<MovingBackground>().scrollSpeed = 5;
+            farPlane.GetComponent<MovingBackground>().scrollSpeed = 5;
 
-        //This UI element is now inactive
-        this.gameObject.SetActive(false);
+            //This UI element is now inactive
+            this.gameObject.SetActive(false);
 
-        //Turn falling space object spawners on
-        spaceSpawners.SetActive(true);
+            //Turn falling space object spawners on
+            spaceSpawners.SetActive(true);
 
-        //Turn score on
-        score.ScoreOn();
+            //Turn score on
+            score.ScoreOn();
 
-        //Activate enemies once again, will change to activate spawners instead later
-        foreach (GameObject enemies in findEnemies) {
-            enemies.gameObject.SetActive(true);
+            //Activate enemies once again, will change to activate spawners instead later
+            foreach (GameObject enemies in findEnemies)
+            {
+                enemies.gameObject.SetActive(true);
+            }
         }
+    }
+
+    public void OnClick_Instructions() {
+        gameManager.Instance.ClickMe();
+        this.gameObject.SetActive(false);
+        instructions.gameObject.SetActive(true);
     }
 
     public void OnClick_QuitGame() {

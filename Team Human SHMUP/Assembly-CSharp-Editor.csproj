@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{DB8B6A0B-5A1C-F622-42D9-02E07B4B80FA}</ProjectGuid>
+	<ProjectGuid>{1A8E0251-37C7-62D5-127E-7C8DB26F7C48}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -99,16 +99,16 @@
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderEditor-Unity5">
- <HintPath>E:/Daniel's Uni/15T3/GAM112/GAM112.4/TeamHumanSHMUPv2/Team Human SHMUP/Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
+ <HintPath>C:/Users/DanielsSickPC/Desktop/Team Human SHMUP After Bus (Nic's Updates)/Team Human SHMUP After Bus/Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity5/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -152,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{35A684B1-A75D-7662-8353-25A7765932B3}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{A36C4F15-725B-EB55-06B9-9A47AE8EC037}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
