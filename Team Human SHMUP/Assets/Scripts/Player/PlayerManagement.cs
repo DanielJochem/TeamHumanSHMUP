@@ -235,7 +235,8 @@ public class PlayerManagement : MonoBehaviour {
                 p1RotateMe = p1Muzzle.transform.rotation;
                 p1RotateMe.x += 0.1f;
                 Instantiate(shotgun, p1Muzzle.transform.position, p1RotateMe);
-                p1Rotate.x -= 0.2f;
+                p1RotateMe = p1Muzzle.transform.rotation;
+                p1RotateMe.x -= 0.2f;
                 Instantiate(shotgun, p1Muzzle.transform.position, p1RotateMe);
 
                 p1ShotgunFireTime = Time.time + shotgunFireRate;
