@@ -20,9 +20,9 @@ public class EnemyBoosterBot : Enemies {
 
     void Start() {
         name = "Booster Bot";
-        health = 100.0f;
+        health = 50.0f;
         moveSpeed = 15.0f;
-        points = 100;
+        points = 1000;
     }
 
     void FixedUpdate() {
@@ -82,6 +82,7 @@ public class EnemyBoosterBot : Enemies {
 
     public void OnTriggerExit(Collider wall) {
         if (wall.gameObject.tag == "EnemyWall") {
+            gameManager.Instance.enemiesAlive--;
             Destroy(gameObject);
         }
     }

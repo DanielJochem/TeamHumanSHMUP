@@ -8,6 +8,7 @@ public class PlayerMachineGun : Weapons {
         lifeTime = 0;
         lifeTimeDuration = 0.5f;
         damage = 5.0f;
+        pointsForBoss = 5;
 
         lifeTime = Time.time + lifeTimeDuration;
     }

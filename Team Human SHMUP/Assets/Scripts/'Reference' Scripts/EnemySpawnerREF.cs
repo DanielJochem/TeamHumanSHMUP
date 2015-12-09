@@ -6,7 +6,7 @@
 
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawnerREF : MonoBehaviour
 {
   private GameManager gameManager;
   public GameObject[] Wave;

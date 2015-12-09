@@ -87,7 +87,8 @@ public class Enemies : MonoBehaviour {
             } else {
                 gameManager.Instance.p2Score += points;
             }
-            
+
+            gameManager.Instance.enemiesAlive--;
             Destroy(this.gameObject);
         }
     }

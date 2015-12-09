@@ -7,7 +7,7 @@ public class EnemyMachineGun : Enemies {
         projectileSpeed = 80.0f;
         projectileLifeTime = 0.0f;
         projectileLifeTimeDuration = 0.5f;
-        projectileDamage = 2;
+        projectileDamage = 1;
 
         projectileLifeTime = Time.time + projectileLifeTimeDuration;
     }

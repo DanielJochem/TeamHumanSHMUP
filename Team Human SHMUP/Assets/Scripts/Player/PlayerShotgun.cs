@@ -8,6 +8,7 @@ public class PlayerShotgun : Weapons {
         lifeTime = 0;
         lifeTimeDuration = 1.0f;
         damage = 20.0f;
+        pointsForBoss = 500;
 
         lifeTime = Time.time + lifeTimeDuration;
     }

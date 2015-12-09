@@ -14,10 +14,10 @@ public class EnemyRocketLauncher : Enemies {
         players.Add(GameObject.FindGameObjectWithTag("Player 1"));
         players.Add(GameObject.FindGameObjectWithTag("Player 2"));
 
-        projectileSpeed = 16.0f;
+        projectileSpeed = 8.0f;
         projectileLifeTime = 0.0f;
-        projectileLifeTimeDuration = 3.0f;
-        projectileDamage = 20;
+        projectileLifeTimeDuration = 5.0f;
+        projectileDamage = 5;
 
         projectileLifeTime = Time.time + projectileLifeTimeDuration;
     }

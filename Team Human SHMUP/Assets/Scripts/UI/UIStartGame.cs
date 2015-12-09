@@ -14,6 +14,7 @@ public class UIStartGame : MonoBehaviour {
     public GameObject closePlane;
     public GameObject farPlane;
     public GameObject spaceSpawners;
+    public GameObject enemySpawner;
 
     public Text p1NameText;
     public Text p2NameText;
@@ -37,6 +38,9 @@ public class UIStartGame : MonoBehaviour {
 
         spaceSpawners = GameObject.FindGameObjectWithTag("SpaceSpawners");
         spaceSpawners.SetActive(false);
+
+        enemySpawner = GameObject.FindGameObjectWithTag("EnemySpawner");
+        enemySpawner.SetActive(false);
     }
 
     void Update()
@@ -66,9 +70,12 @@ public class UIStartGame : MonoBehaviour {
 
             //Turn falling space object spawners on
             spaceSpawners.SetActive(true);
+            enemySpawner.SetActive(true);
 
             //Turn score on
             score.ScoreOn();
+
+            gameManager.Instance.timeStarted = true;
 
             //Activate enemies once again, will change to activate spawners instead later
             foreach (GameObject enemies in findEnemies)

@@ -9,7 +9,7 @@ public class EnemyInterceptor : Enemies {
     //Shotgun Weapon
     public GameObject shotgun;
     private float shotgunFireTime;
-    private float shotgunFireRate = 1.0f;
+    private float shotgunFireRate = 2.0f;
 
     //Weapon fires from here
     public GameObject muzzle;
@@ -18,14 +18,14 @@ public class EnemyInterceptor : Enemies {
         name = "Interceptor";
         health = 100.0f;
         moveSpeed = 3.0f;
-        points = 45;
+        points = 450;
     }
 
     void Update()
     {
         FollowPlayer();
         fireShotgun();
-        transform.position += Time.deltaTime * moveSpeed * transform.forward;
+        transform.position += Time.deltaTime * moveSpeed * -transform.forward;
     }
 
 
@@ -54,6 +54,7 @@ public class EnemyInterceptor : Enemies {
 
     public void OnTriggerExit(Collider wall) {
         if (wall.gameObject.tag == "EnemyWall") {
+            gameManager.Instance.enemiesAlive--;
             Destroy(gameObject);
         }
     }

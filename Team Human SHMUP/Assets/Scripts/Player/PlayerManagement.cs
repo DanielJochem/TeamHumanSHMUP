@@ -8,7 +8,7 @@ public class PlayerManagement : MonoBehaviour {
 	public CharacterController playerTwo;
 
     //Health and lives
-    public int health = 100;
+    public int health = 999999999;
     public int lives = 3;
     public float speed = 8.0f;
 
@@ -63,10 +63,13 @@ public class PlayerManagement : MonoBehaviour {
             float tiltAroundXP1 = Input.GetAxis("P1_Vertical") * tiltAngle;
             Quaternion target = Quaternion.Euler(tiltAroundXP1, 0, tiltAroundZP1);
             if (this.gameObject.tag == "Player 1") {
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+                transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, target, Time.deltaTime * smooth);
             }
+        } else {
+            Quaternion back = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, back, Time.deltaTime * smooth);
         }
-            
+
         //Player 2
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)) {
             playerTwoPosition = new Vector3(Input.GetAxis("P2_Horizontal"), 0, Input.GetAxis("P2_Vertical")).normalized;
@@ -76,9 +79,12 @@ public class PlayerManagement : MonoBehaviour {
             float tiltAroundZP2 = -Input.GetAxis("P2_Horizontal") * tiltAngle;
             float tiltAroundXP2 = Input.GetAxis("P2_Vertical") * tiltAngle;
             Quaternion target = Quaternion.Euler(tiltAroundXP2, 0, tiltAroundZP2);
-            if(this.gameObject.tag == "Player 2") { 
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+            if (this.gameObject.tag == "Player 2") {
+                transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, target, Time.deltaTime * smooth);
             }
+        } else {
+            Quaternion back = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, back, Time.deltaTime * smooth);
         }
 
 		//Controllers used
@@ -102,8 +108,11 @@ public class PlayerManagement : MonoBehaviour {
             float tiltAroundXP1 = Input.GetAxis("LeftJoystickVertical") * (tiltAngle * 4);
             Quaternion target = Quaternion.Euler(tiltAroundXP1, 0, tiltAroundZP1);
             if (this.gameObject.tag == "Player 1") {
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+                transform.GetChild(0).transform.rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, target, Time.deltaTime * smooth);
             }
+        } else {
+            Quaternion back = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, back, Time.deltaTime * smooth);
         }
 
         //Player 2
@@ -127,8 +136,11 @@ public class PlayerManagement : MonoBehaviour {
             float tiltAroundXP2 = Input.GetAxis("LeftJoystickVertical2") * tiltAngle;
             Quaternion target = Quaternion.Euler(0, tiltAroundXP2, tiltAroundZP2);
             if (this.gameObject.tag == "Player 2") {
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+                transform.GetChild(0).transform.rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, target, Time.deltaTime * smooth);
             }
+        } else {
+            Quaternion back = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).transform.rotation, back, Time.deltaTime * smooth);
         }
 
         //if players are alive
@@ -159,7 +171,7 @@ public class PlayerManagement : MonoBehaviour {
                 gameManager.Instance.p1LivesRemaining--;
                 if (gameManager.Instance.p1LivesRemaining > 0) {
                     health = 100;
-                    this.transform.position = new Vector3(4.63f, 1.585f, -10.7f);
+                    this.transform.position = new Vector3(4.33f, 2.0f, -7.75f);
                     gameManager.Instance.p1HealthRemaining = 100;
                 } else {
                     gameManager.Instance.playerOneDead = true;
@@ -173,7 +185,7 @@ public class PlayerManagement : MonoBehaviour {
                 gameManager.Instance.p2LivesRemaining--;
                 if (gameManager.Instance.p2LivesRemaining > 0) {
                     health = 100;
-                    this.transform.position = new Vector3(18.63f, 1.585f, -10.7f);
+                    this.transform.position = new Vector3(18.33f, 2.0f, -7.75f);
                     gameManager.Instance.p2HealthRemaining = 100;
                 }  else {
                     gameManager.Instance.playerTwoDead = true;

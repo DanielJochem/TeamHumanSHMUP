@@ -10,6 +10,11 @@ public class gameManager : SingletonBehaviour<gameManager>
     public GameObject[] enemyUnitList;
     public List<GameObject> players = new List<GameObject>();
 
+    public int enemiesAlive;
+
+    public float timer = 25.0f;
+    public bool timeStarted = false;
+
     //For adding to score later on
     public float timeSurvivedP1;
     public float timeSurvivedP2;
@@ -40,6 +45,13 @@ public class gameManager : SingletonBehaviour<gameManager>
     public Text p1FinalScore;
     public Text p2FinalScore;
 
+    //Current phase activated
+    public Text phase;
+    public int phaseLevel = 0;
+    public string phaseBossLevel = "Boss Encounter";
+
+    public GameObject boss;
+
     void Start()
     {
         p1LivesRemaining = 3;
@@ -50,6 +62,12 @@ public class gameManager : SingletonBehaviour<gameManager>
 
         p1HealthRemaining = 100;
         p2HealthRemaining = 100;
+
+        enemiesAlive = 0;
+
+        //Find and deactivate boss
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        boss.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -72,6 +90,19 @@ public class gameManager : SingletonBehaviour<gameManager>
         //Player Final Score
         p1FinalScore.text = "Final Score: " + ((p1Score + (Mathf.Floor(timeSurvivedP1))) - prevTimeP1);
         p2FinalScore.text = "Final Score: " + ((p2Score + (Mathf.Floor(timeSurvivedP2))) - prevTimeP2);
+
+        if (timeStarted) {
+            timer -= Time.deltaTime;
+            Debug.Log("Timer: " + timer);
+        }
+
+        //Phase level
+        if(phaseLevel != 0) {
+            phase.text = "Phase " + phaseLevel;
+        } else {
+            phase.text = phaseBossLevel;
+        }
+
 
         if (playerOneDead == true)
         {

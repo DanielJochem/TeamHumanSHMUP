@@ -13,7 +13,8 @@ public class PlayerRocketLauncher : Weapons {
         lifeTime = 0;
         lifeTimeDuration = 3.0f;
         damage = 50.0f;
-        
+        pointsForBoss = 2000;
+
         lifeTime = Time.time + lifeTimeDuration;
     }
 	

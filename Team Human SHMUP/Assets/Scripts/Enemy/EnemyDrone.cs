@@ -9,7 +9,7 @@ public class EnemyDrone : Enemies {
     //Lazor Weapon
     public GameObject machineGun;
     private float machineGunFireTime;
-    private float machineGunFireRate = 0.2f;
+    private float machineGunFireRate = 0.5f;
 
     //Weapon fires from here
     public GameObject muzzle;
@@ -18,7 +18,7 @@ public class EnemyDrone : Enemies {
         name = "Drone";
         health = 20.0f;
         moveSpeed = 5.0f;
-        points = 10;
+        points = 100;
     }
 
     void Update() {
@@ -41,12 +41,14 @@ public class EnemyDrone : Enemies {
         whoHitMeLast = collider.gameObject.tag;
         if (collider.gameObject.tag == "P1Fired" || collider.gameObject.tag == "P2Fired")
         {
+            //enemiesAlive
             Destroy(collider.gameObject);
         }
     }
 
     public void OnTriggerExit(Collider wall) {
         if (wall.gameObject.tag == "EnemyWall") {
+            gameManager.Instance.enemiesAlive--;
             Destroy(gameObject);
         }
     }
