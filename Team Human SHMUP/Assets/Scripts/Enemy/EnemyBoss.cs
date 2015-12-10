@@ -8,6 +8,9 @@ public class EnemyBoss : Enemies {
     public bool atPosition = false;
     public Quaternion rot;
 
+    //Boss explosion
+    public GameObject explosm;
+
     void Start()
     {
         name = "BOSS";
@@ -63,6 +66,7 @@ public class EnemyBoss : Enemies {
         if (collider.gameObject.tag == "P1Fired" || collider.gameObject.tag == "P2Fired")
         {
             AudioManager.Instance.HitAudioSound();
+
             if (collider.gameObject.tag == "P1Fired")
             {
                 gameManager.Instance.p1Score += collider.gameObject.GetComponent<Weapons>().pointsForBoss;
@@ -73,5 +77,10 @@ public class EnemyBoss : Enemies {
             }
             Destroy(collider.gameObject);
         }
+    }
+
+    public void ExplodeBoss()
+    {
+        Instantiate(explosm, transform.position, transform.rotation);
     }
 }

@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class gameManager : SingletonBehaviour<gameManager>
 {
     public UIGameOver gameOver;
+    public EnemyBoss enemyBoss;
 
+    //public GameObject[] enemyUnitList;
     public GameObject[] enemyUnitList;
     public List<GameObject> players = new List<GameObject>();
 
@@ -48,9 +50,13 @@ public class gameManager : SingletonBehaviour<gameManager>
     //Current phase activated
     public Text phase;
     public int phaseLevel = 0;
-    public string phaseBossLevel = "Boss Encounter";
+    public float radioactivityLevel = 0.0f;
+    public string phaseBossLevel;
 
     public GameObject boss;
+
+    //Rocket Launcher Explosion
+    public GameObject rocketExplosion;
 
     void Start()
     {
@@ -66,8 +72,10 @@ public class gameManager : SingletonBehaviour<gameManager>
         enemiesAlive = 0;
 
         //Find and deactivate boss
-        boss = GameObject.FindGameObjectWithTag("Boss");
+        boss = GameObject.Find("Boss");
         boss.gameObject.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -93,16 +101,35 @@ public class gameManager : SingletonBehaviour<gameManager>
 
         if (timeStarted) {
             timer -= Time.deltaTime;
-            Debug.Log("Timer: " + timer);
         }
 
         //Phase level
         if(phaseLevel != 0) {
             phase.text = "Phase " + phaseLevel;
         } else {
-            phase.text = phaseBossLevel;
+            if (radioactivityLevel <= 100.0f) {
+                phaseBossLevel = "DANGER! Radioactivity at: " + Mathf.Floor(radioactivityLevel) + " Percent";
+                phase.text = phaseBossLevel;
+                radioactivityLevel += Time.deltaTime * 2;
+            } else if (radioactivityLevel > 100.0f) {
+                radioactivityLevel = 100.0f;
+                enemyBoss.ExplodeBoss();
+                Destroy(enemyBoss.gameObject);
+                gameOver.restart.SetActive(true);
+                foreach(GameObject enemies in enemyUnitList)
+                {
+                    Destroy(enemies.gameObject);
+                }
+                if(GameObject.FindGameObjectWithTag("Player 1") != null)
+                {
+                    Destroy(GameObject.FindGameObjectWithTag("Player 1").gameObject);
+                }
+                if (GameObject.FindGameObjectWithTag("Player 2") != null)
+                {
+                    Destroy(GameObject.FindGameObjectWithTag("Player 2").gameObject);
+                }
+            }
         }
-
 
         if (playerOneDead == true)
         {

@@ -8,7 +8,7 @@ public class PlayerManagement : MonoBehaviour {
 	public CharacterController playerTwo;
 
     //Health and lives
-    public int health = 999999999;
+    public int health = 100;
     public int lives = 3;
     public float speed = 8.0f;
 
@@ -45,6 +45,10 @@ public class PlayerManagement : MonoBehaviour {
     //For later model tilting
     public float smooth = 2.0f;
     public float tiltAngle = 5.0f;
+
+    //Explosions
+    public GameObject lostLifeExplosion;
+    public GameObject deathExplosion;
 
     void Start() {
         playerOne = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterController>();
@@ -170,28 +174,28 @@ public class PlayerManagement : MonoBehaviour {
             if (this.gameObject.tag == "Player 1") {
                 gameManager.Instance.p1LivesRemaining--;
                 if (gameManager.Instance.p1LivesRemaining > 0) {
+                    Instantiate(lostLifeExplosion, transform.position, transform.rotation);
                     health = 100;
                     this.transform.position = new Vector3(4.33f, 2.0f, -7.75f);
                     gameManager.Instance.p1HealthRemaining = 100;
                 } else {
+                    Instantiate(deathExplosion, transform.position, transform.rotation);
                     gameManager.Instance.playerOneDead = true;
                     Destroy(this.gameObject);
-                    //For later use
-                    //Instantiate(deathExplosion, transform.position, transform.rotation);
                 }
             }
 
             if (this.gameObject.tag == "Player 2") {
                 gameManager.Instance.p2LivesRemaining--;
                 if (gameManager.Instance.p2LivesRemaining > 0) {
+                    Instantiate(lostLifeExplosion, transform.position, transform.rotation);
                     health = 100;
                     this.transform.position = new Vector3(18.33f, 2.0f, -7.75f);
                     gameManager.Instance.p2HealthRemaining = 100;
                 }  else {
+                    Instantiate(deathExplosion, transform.position, transform.rotation);
                     gameManager.Instance.playerTwoDead = true;
                     Destroy(this.gameObject);
-                    //For later use
-                    //Instantiate(deathExplosion, transform.position, transform.rotation);
                 }
             }
         }

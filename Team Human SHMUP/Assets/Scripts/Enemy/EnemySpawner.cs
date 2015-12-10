@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject spawnedEnemy = null;
 
     public float delay = 0.0f;
-    public float spawnTime = 60.0f; //
+    public float spawnTime = 60.0f;
 
     public int bossPhaseNumber = 8;
     public GameObject boss;
@@ -47,8 +47,8 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     void CheckPhase() {
-        if (gameManager.Instance.timer <= 0 && (gameManager.Instance.playerOneDead == false && gameManager.Instance.playerTwoDead == false))  {
-            gameManager.Instance.timer = 5.0f; //
+        if (gameManager.Instance.timer <= 0 && (gameManager.Instance.playerOneDead == false || gameManager.Instance.playerTwoDead == false))  {
+            gameManager.Instance.timer = 27.0f;
             currentEnemies.RemoveRange(0, currentEnemies.Count);
             if (currentPhase < bossPhaseNumber) {
                 currentPhase++;

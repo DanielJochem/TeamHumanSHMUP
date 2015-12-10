@@ -41,7 +41,6 @@ public class EnemyDrone : Enemies {
         whoHitMeLast = collider.gameObject.tag;
         if (collider.gameObject.tag == "P1Fired" || collider.gameObject.tag == "P2Fired")
         {
-            //enemiesAlive
             Destroy(collider.gameObject);
         }
     }

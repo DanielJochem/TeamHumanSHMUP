@@ -58,4 +58,13 @@ public class PlayerRocketLauncher : Weapons {
 		}
 		return closestEnemyUnit;
 	}
+
+    void OnTriggerEnter(Collider otherObject)
+    {
+        if (otherObject.gameObject.tag == "Enemy" || otherObject.gameObject.tag == "Boss")
+        {
+            otherObject.GetComponent<Enemies>().takeDamage(damage);
+            Instantiate(gameManager.Instance.rocketExplosion, transform.position, transform.rotation);
+        }
+    }
 }

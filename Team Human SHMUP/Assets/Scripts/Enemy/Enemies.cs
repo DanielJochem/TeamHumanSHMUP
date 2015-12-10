@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Enemies : MonoBehaviour {
 
-    public string name = "";
+    public string name;
     public float health;
     public float moveSpeed;
     public int points;
@@ -39,9 +39,6 @@ public class Enemies : MonoBehaviour {
         //Kill Check
         if (health <= 0) {
             Destroy(this.gameObject);
-
-            //For later use
-            //Instantiate(deathExplosion, transform.position, transform.rotation);
         }
     }
 

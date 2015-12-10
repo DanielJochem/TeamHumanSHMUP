@@ -76,6 +76,7 @@ public class UIStartGame : MonoBehaviour {
             score.ScoreOn();
 
             gameManager.Instance.timeStarted = true;
+            gameManager.Instance.radioactivityLevel = 0.0f;
 
             //Activate enemies once again, will change to activate spawners instead later
             foreach (GameObject enemies in findEnemies)

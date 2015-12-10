@@ -72,11 +72,13 @@ public class EnemyRocketLauncher : Enemies {
     {
         if (otherObject.tag == "Player 1")
         {
+            Instantiate(gameManager.Instance.rocketExplosion, transform.position, transform.rotation);
             otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
             Destroy(this.gameObject);
         }
         else if (otherObject.tag == "Player 2")
         {
+            Instantiate(gameManager.Instance.rocketExplosion, transform.position, transform.rotation);
             otherObject.GetComponent<PlayerManagement>().takeDamage(projectileDamage);
             Destroy(this.gameObject);
         }
